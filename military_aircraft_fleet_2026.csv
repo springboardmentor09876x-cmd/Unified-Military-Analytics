@@ -1,0 +1,146 @@
+Rank,Country,Aircraft Fleet
+1,United States,"13,032"
+2,Russia,"4,237"
+3,China,"3,529"
+4,India,"2,183"
+5,South Korea,"1,540"
+6,Japan,"1,429"
+7,Pakistan,"1,397"
+8,Turkiye,"1,101"
+9,Egypt,"1,088"
+10,France,974
+11,Saudi Arabia,917
+12,North Korea,837
+13,Taiwan,720
+14,Italy,714
+15,United Kingdom,625
+16,Algeria,620
+17,Israel,597
+18,United Arab Emirates,581
+19,Germany,569
+20,Greece,560
+21,Iran,551
+22,Thailand,496
+23,Brazil,495
+24,Indonesia,460
+25,Poland,457
+26,Spain,440
+27,Colombia,430
+28,Mexico,424
+29,Iraq,360
+30,Canada,354
+31,Australia,348
+32,Ukraine,347
+33,Myanmar,331
+34,Jordan,279
+35,Angola,278
+36,Chile,274
+37,Morocco,271
+38,Vietnam,265
+39,Qatar,263
+40,Peru,252
+41,Argentina,241
+42,Singapore,235
+43,Venezuela,224
+44,Bangladesh,212
+45,Philippines,204
+46,Belarus,194
+47,Sudan,183
+48,South Africa,181
+49,Sweden,172
+50,Kazakhstan,168
+51,Finland,162
+52,Yemen,160
+53,Azerbaijan,159
+54,Nigeria,159
+55,Uzbekistan,159
+56,Tunisia,155
+57,Kenya,154
+58,Romania,148
+59,Switzerland,141
+60,Bahrain,137
+61,Kuwait,133
+62,Malaysia,132
+63,Netherlands,130
+64,Oman,128
+65,Portugal,128
+66,Denmark,122
+67,Serbia,115
+68,Norway,109
+69,Belgium,104
+70,Ethiopia,104
+71,Syria,104
+72,Czechia,103
+73,Ecuador,99
+74,Turkmenistan,91
+75,Austria,90
+76,Sri Lanka,90
+77,Libya,83
+78,Dominican Republic,80
+79,Hungary,80
+80,Lebanon,80
+81,Zimbabwe,80
+82,Zambia,78
+83,Bulgaria,71
+84,Armenia,69
+85,Bolivia,67
+86,Croatia,67
+87,Georgia,61
+88,Democratic Republic of the Congo,56
+89,El Salvador,51
+90,Uganda,51
+91,Paraguay,49
+92,Slovakia,48
+93,New Zealand,47
+94,Botswana,45
+95,Honduras,45
+96,Mali,44
+97,Uruguay,43
+98,Chad,40
+99,Slovenia,40
+100,Senegal,39
+101,Panama,38
+102,Tanzania,38
+103,Namibia,36
+104,Cameroon,35
+105,Guatemala,35
+106,Laos,29
+107,Burkina Faso,26
+108,Niger,26
+109,Gabon,25
+110,Tajikistan,25
+111,Cambodia,24
+112,Ireland,23
+113,Mauritania,23
+114,Mozambique,23
+115,Ivory Coast,22
+116,Albania,20
+117,Cuba,20
+118,Eritrea,20
+119,North Macedonia,20
+120,South Sudan,19
+121,Ghana,18
+122,Nepal,17
+123,Nicaragua,17
+124,Bosnia and Herzegovina,15
+125,Republic of the Congo,14
+126,Montenegro,10
+127,Lithuania,9
+128,Central African Republic,8
+129,Mongolia,8
+130,Benin,7
+131,Kyrgyzstan,7
+132,Madagascar,6
+133,Somalia,6
+134,Afghanistan,5
+135,Beliz,3
+136,Latvia,3
+137,Moldova,3
+138,Suriname,3
+139,Bhutan,2
+140,Estonia,2
+141,Luxembourg,1
+142,Sierra Leone,1
+143,Iceland,0
+144,Kosovo,0
+145,Liberia,0
