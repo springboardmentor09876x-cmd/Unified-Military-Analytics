@@ -1,73 +1,34 @@
-# Unified Military Analytics
+# Unified Military Analytics and Comparison Dashboard
 
-## Module 1 - Aircraft Data Scraper
+## Project Overview
+This project collects military data from Global Firepower, cleans the dataset, and prepares it for visualization in Tableau.
 
-### Objective
-Scrape Military Aircraft Fleet Strength data from the Global Firepower website and store it in a CSV file.
+## Module 1
+- Scraped military data from Global Firepower.
+- Merged all metrics into a single dataset.
+- Output: `military_raw_data.csv`
 
-### Website
-https://www.globalfirepower.com/aircraft-total.php
+## Module 2
+- Cleaned and structured the raw dataset.
+- Converted columns to appropriate data types.
+- Handled missing values.
+- Output: `military_cleaned.csv`
 
-### Technologies Used
-- Python 3
-- Requests
-- BeautifulSoup (bs4)
+## Technologies Used
+- Python
 - Pandas
+- BeautifulSoup
+- Requests
+- Jupyter Notebook
+- Git & GitHub
 
-### Project Structure
-
-Unified-Military-Analytics/
-
-├── README.md
-
-├── data/
-
-│   └── aircraft_total.csv
-
-├── html/
-
-│   └── aircraft_total.html
-
-└── scripts/
-
-    └── scrape_military_metrics.py
-
-### Output Files
-- `aircraft_total.html` - Saved HTML page for debugging.
-- `aircraft_total.csv` - Extracted military aircraft data for 145 countries.
-
-### Features
-- Downloads webpage automatically.
-- Saves HTML locally.
-- Extracts Country Name.
-- Extracts Military Aircraft count.
-- Stores the data in a CSV file.
-- Processes data for 145 countries.
-
-### How to Run
-
-Open Terminal and run:
-
-```bash
-python3 scripts/scrape_military_metrics.py
+## Project Structure
 ```
+data/
+├── military_raw_data.csv
+├── military_cleaned.csv
 
-### Sample Output
-
+scripts/
+├── scrape_all_metrics.py
+├── clean_data.ipynb
 ```
-Military Aircraft Fleet Strength by Country (2026)
-
-HTML file saved successfully!
-
-Total cards found: 145
-
-CSV File Created Successfully!
-
-Total Countries: 145
-```
-
-### Author
-
-**Sahana N**
-
-Branch: **sahana-module1**
