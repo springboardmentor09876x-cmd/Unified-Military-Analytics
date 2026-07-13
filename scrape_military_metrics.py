@@ -1,37 +1,13 @@
-#MODULE 1 - SCRAPING
+####   MODULE 1 - Scraping Setup and Execution   #####
+
 #importing packages
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd 
 import re
-
-
-'''
-#Task1
-#url="https://www.globalfirepower.com/aircraft-total.php"
-response=requests.get(url)
-print(response.status_code)
-#print(response.text)
-soup = BeautifulSoup(response.text, "html.parser") #creating a soup object to parse the html content of the page
-print(soup.title.text)
-#print(soup.find("div", class_="picTrans recordsetContainer boxShadow zoom"))
-#print(soup.find_all("div", class_="countryNameContainer"))
-cards = soup.find_all("div", class_="picTrans recordsetContainer boxShadow zoom")
-print("Number of country cards:", len(cards))
-data=[]
-for card in cards:
-  country_name =card.find("div",class_="countryNameContainer").get_text(strip=True)
-  aircraft_count =card.find("div",class_="valueContainer").get_text(strip=True)
-  data.append({"Country":country_name,
-               "Aircraft Count":aircraft_count})
-df =pd.DataFrame(data)
-df.to_csv("military_raw_data.csv",index=False)
-print(df)
-'''
-
 #TASK 2
-
 metric_urls = {
+    "https://www.globalfirepower.com/total-population-by-country.php": "total_population",
     "https://www.globalfirepower.com/available-military-manpower.php": "total_military_manpower",
     "https://www.globalfirepower.com/manpower-fit-for-military-service.php": "fit_for_service",
     "https://www.globalfirepower.com/manpower-reaching-military-age-annually.php": "population_reaching_military_age_annually",
@@ -84,13 +60,11 @@ metric_urls = {
     "https://www.globalfirepower.com/square-land-area.php": "total_land_area_sq_km",
     "https://www.globalfirepower.com/coastline-coverage.php": "coastline_coverage_km",
     "https://www.globalfirepower.com/border-coverage.php": "border_coverage_km",
-    "https://www.globalfirepower.com/waterway-coverage.php": "waterway_coverage_km",
+    "https://www.globalfirepower.com/waterway-coverage.php": "waterway_coverage_km"
 }
 
-#Checking the status of each URL
-headers = {
-    "User-Agent": "Mozilla/5.0"
-}
+#---------------Checking the status of each URL------------------
+headers = {"User-Agent": "Mozilla/5.0"}
 working = 0
 failed = 0
 for url, metric in metric_urls.items():
@@ -108,26 +82,22 @@ for url, metric in metric_urls.items():
 print(f"Working URLs : {working}")
 print(f"Failed URLs  : {failed}")
 print(f"Total URLs   : {len(metric_urls)}")
-
-
-#Function to scrape data from a given URL
+#-------------Function to scrape data from a given URL-------------------
 def scrape_metric(url):
     response = requests.get(url, headers=headers)
     soup = BeautifulSoup(response.text, "html.parser")
     cards = soup.find_all("div", class_="picTrans recordsetContainer boxShadow zoom")
     data = {}
     for card in cards:
-        #country = card.find("div", class_="countryNameContainer").get_text(strip=True)
+        #Country name
         long_name = card.find("div", class_="longFormName")
         if long_name:
           country = long_name.get_text(strip=True)
         else:
           country = card.find("div", class_="shortFormName").get_text(strip=True)
-
-        #value = card.find("div", class_="valueContainer").get_text(strip=True)
+        #Value
         value_div = card.find("div", class_="valueContainer")
         if value_div:
-          #value = next(value_div.stripped_strings)
           value = next(value_div.stripped_strings)
           value = re.sub(r"\s+", " ", value).strip()
         else:
@@ -135,8 +105,7 @@ def scrape_metric(url):
         data[country] = value
     #print(url, len(data))
     return data
-
-#Merge all metrics into a single DataFrame
+#----------Merge all metrics into a single DataFrame------------------
 master_data={}
 for url, metric in metric_urls.items():
     #print(f"Scraping {metric}")
@@ -148,14 +117,134 @@ for url, metric in metric_urls.items():
 df = pd.DataFrame.from_dict(master_data,orient="index")
 df.index.name = "Country"
 df.reset_index(inplace=True)
-print(df.shape)
-print(df.head())
+#print(df.shape)
+#print(df.head())
 #print(df.columns.tolist())
-
-
-#Save the DataFrame to a CSV file
+#-------------Save the DataFrame to a CSV file-------------
 df.to_csv("military_raw_data.csv", index=False, encoding="utf-8")
-print("military_raw_data.csv created successfully.")
+#print("military_raw_data.csv created successfully.")
 
 
+#          ********MERGING WITH EXISTING DATASET**********
 
+lookup_file = "Military_Dataset_Missed_Columns.xlsx"
+#Correcting country name discrepancies
+
+country_mapping = {
+    "Democratic Republic of the Congo": "Congo (Democratic Republic Of The)",
+    "Republic of the Congo": "Congo",
+    "Turkiye": "Turkey",
+    "Czechia": "Czech Republic",
+    "Bosnia and Herzegovina": "Bosnia And Herzegovina",
+    "North Macedonia": "Macedonia",
+    "Beliz": "Belize",
+    "Ivory Coast": "Côte D'Ivoire",
+}
+df["Country"] = df["Country"].replace(country_mapping)
+#print(df[df["Country"].isin(country_mapping.values())][["Country"]])
+
+
+#----------Continent and Region information-------------
+continent_df = pd.read_excel( lookup_file, sheet_name="Continent & Region")
+df = df.merge(continent_df, on="Country", how="left")
+#print(df.columns.tolist())
+#print(continent_df.columns.tolist())
+
+#---------Merging GDP information-----------
+gdp_df = pd.read_excel(lookup_file,sheet_name="GDP - 1")
+# Keep only the latest year for each country
+gdp_latest = (gdp_df.sort_values("Year").groupby("Country", as_index=False).last())
+# Standardize GDP country names to match the main dataset
+gdp_mapping = {
+    "Russian Federation": "Russia",
+    "Egypt, Arab Rep.": "Egypt",
+    "Iran, Islamic Rep.": "Iran",
+    "Korea, Rep.": "South Korea",
+    "Congo, Dem. Rep.": "Congo (Democratic Republic Of The)",
+    "Congo, Rep.": "Congo",
+    "Bosnia and Herzegovina": "Bosnia And Herzegovina",
+    "Czechia": "Czech Republic",
+    "Lao PDR": "Laos",
+    "North Macedonia": "Macedonia",
+    "Slovak Republic": "Slovakia",
+    "Venezuela, RB": "Venezuela",
+    "Yemen, Rep.": "Yemen",
+    "Turkiye": "Turkey",
+    "Cote d'Ivoire": "Côte D'Ivoire",
+    "Kyrgyz Republic": "Kyrgyzstan",
+    "Syrian Arab Republic": "Syria"
+}
+gdp_latest["Country"] = gdp_latest["Country"].replace(gdp_mapping)
+# Rename GDP column
+gdp_latest.rename(columns={"GDP": "GDP_USD"}, inplace=True)
+gdp_latest = gdp_latest[["Country", "GDP_USD"]]
+df = df.merge(gdp_latest, on="Country", how="left")
+
+#----------Merging NATO membership information-----------
+nato_df = pd.read_excel(lookup_file, sheet_name="NATO Alliance")
+nato_df["NATO_Member"] = "Yes"
+nato_df.rename(columns={"NATO Allied Countries": "Country"}, inplace=True)
+df = df.merge(nato_df[["Country", "NATO_Member"]],on="Country",how="left")
+df["NATO_Member"] = df["NATO_Member"].fillna("No")
+#print(df[df["NATO_Member"] == "Yes"].head())
+#print(df["NATO_Member"].value_counts())
+
+#------------Saving the merged DataFrame to a CSV file---------------
+df.to_csv("military_raw_data.csv", index=False)
+#print("Merged military_raw_data.csv created successfully.")
+#print(df.shape)
+#print(df.head())
+
+
+#         *******Scraping and Merging Power Index Rank and Score**********
+
+url = "https://www.globalfirepower.com/countries-listing.php"
+response = requests.get(url, headers=headers)
+soup = BeautifulSoup(response.text, "html.parser")
+power_data = []
+records = soup.find_all("div", class_="picTrans recordsetContainer boxShadow zoom")
+for record in records:
+    # Country Name
+    country = record.find("div", class_="longFormName").get_text(strip=True)
+     # Rank
+    rank = record.find("div", class_="rankNumContainer").get_text(strip=True)
+     # Power Index Score
+    pwr = record.find("div", class_="pwrIndxContainer").get_text(strip=True)
+    pwr = pwr.replace("PwrIndx:", "").strip()
+    power_data.append({
+        "Country": country,
+        "power_index_rank": rank,
+        "power_index_score": pwr
+    })
+#----------Convert to DataFrame----------------------
+power_df = pd.DataFrame(power_data)
+#print(power_df.head())
+#print(power_df.shape)
+
+# Fix country name if necessary
+# Standardize country names in Power Index data
+power_mapping = {
+    "Turkiye": "Turkey",
+    "Czechia": "Czech Republic",
+    "Democratic Republic of the Congo": "Congo (Democratic Republic Of The)",
+    "Republic of the Congo": "Congo",
+    "Ivory Coast": "Côte D'Ivoire",
+    "North Macedonia": "Macedonia",
+    "Bosnia and Herzegovina": "Bosnia And Herzegovina",
+    "Beliz": "Belize",
+    "United States of America": "United States"
+}
+power_df["Country"] = power_df["Country"].replace(power_mapping)
+
+#-----------Merging Power Index DataFrame with the main DataFrame------------
+df = df.merge(power_df, on="Country", how="left")
+df.columns = df.columns.str.lower()
+#print(df.head())
+#print(df.shape)
+
+
+#         ********FINAL DATASET FOR ANALYSIS******
+df.to_csv("military_raw_data.csv", index=False)
+print("Final military_raw_data.csv created successfully.")
+print(df.shape)
+print(df)
