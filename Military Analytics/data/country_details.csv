@@ -1,0 +1,146 @@
+Country,Power_Index,Rank
+United States,PwrIndx: 0.0741,1
+Russia,PwrIndx: 0.0791,2
+China,PwrIndx: 0.0919,3
+India,PwrIndx: 0.1346,4
+South Korea,PwrIndx: 0.1642,5
+France,PwrIndx: 0.1798,6
+Japan,PwrIndx: 0.1876,7
+United Kingdom,PwrIndx: 0.1881,8
+Turkiye,PwrIndx: 0.1975,9
+Italy,PwrIndx: 0.2211,10
+Brazil,PwrIndx: 0.2374,11
+Germany,PwrIndx: 0.2463,12
+Indonesia,PwrIndx: 0.2582,13
+Pakistan,PwrIndx: 0.2626,14
+Israel,PwrIndx: 0.2707,15
+Iran,PwrIndx: 0.3199,16
+Australia,PwrIndx: 0.3208,17
+Spain,PwrIndx: 0.3247,18
+Egypt,PwrIndx: 0.3651,19
+Ukraine,PwrIndx: 0.3691,20
+Poland,PwrIndx: 0.3891,21
+Taiwan,PwrIndx: 0.3927,22
+Vietnam,PwrIndx: 0.4066,23
+Thailand,PwrIndx: 0.4458,24
+Saudi Arabia,PwrIndx: 0.4473,25
+Sweden,PwrIndx: 0.4834,26
+Algeria,PwrIndx: 0.4849,27
+Canada,PwrIndx: 0.5269,28
+Singapore,PwrIndx: 0.5272,29
+Greece,PwrIndx: 0.5484,30
+North Korea,PwrIndx: 0.5933,31
+Argentina,PwrIndx: 0.5983,32
+Nigeria,PwrIndx: 0.6097,33
+Netherlands,PwrIndx: 0.6142,34
+Myanmar,PwrIndx: 0.6265,35
+Mexico,PwrIndx: 0.6401,36
+Bangladesh,PwrIndx: 0.6517,37
+Portugal,PwrIndx: 0.6659,38
+Norway,PwrIndx: 0.6679,39
+South Africa,PwrIndx: 0.6843,40
+Philippines,PwrIndx: 0.6993,41
+Malaysia,PwrIndx: 0.7379,42
+Colombia,PwrIndx: 0.7551,43
+Iraq,PwrIndx: 0.8115,44
+Denmark,PwrIndx: 0.8198,45
+Switzerland,PwrIndx: 0.8396,46
+Ethiopia,PwrIndx: 0.8525,47
+Finland,PwrIndx: 0.8673,48
+Chile,PwrIndx: 0.8704,49
+Peru,PwrIndx: 0.8827,50
+Venezuela,PwrIndx: 0.9106,51
+Romania,PwrIndx: 0.9558,52
+Uzbekistan,PwrIndx: 0.9908,53
+United Arab Emirates,PwrIndx: 1.0188,54
+Czechia,PwrIndx: 1.0313,55
+Morocco,PwrIndx: 1.0368,56
+Hungary,PwrIndx: 1.0429,57
+Kazakhstan,PwrIndx: 1.0433,58
+Angola,PwrIndx: 1.1045,59
+Azerbaijan,PwrIndx: 1.1991,60
+Belgium,PwrIndx: 1.2201,61
+Bulgaria,PwrIndx: 1.2522,62
+Serbia,PwrIndx: 1.2938,63
+Democratic Republic of the Congo,PwrIndx: 1.3051,64
+Cuba,PwrIndx: 1.3345,65
+Sudan,PwrIndx: 1.3563,66
+Austria,PwrIndx: 1.3759,67
+Sri Lanka,PwrIndx: 1.3822,68
+Slovakia,PwrIndx: 1.3911,69
+Belarus,PwrIndx: 1.4072,70
+Qatar,PwrIndx: 1.4096,71
+Ecuador,PwrIndx: 1.4479,72
+Croatia,PwrIndx: 1.5432,73
+Jordan,PwrIndx: 1.5581,74
+Bahrain,PwrIndx: 1.6731,75
+Kuwait,PwrIndx: 1.7161,76
+Albania,PwrIndx: 1.7258,77
+Turkmenistan,PwrIndx: 1.7459,78
+Tunisia,PwrIndx: 1.7823,79
+Libya,PwrIndx: 1.7872,80
+Paraguay,PwrIndx: 1.7974,81
+Bolivia,PwrIndx: 1.8301,82
+Cambodia,PwrIndx: 1.8434,83
+Kenya,PwrIndx: 1.8588,84
+Chad,PwrIndx: 1.8594,85
+Oman,PwrIndx: 1.8823,86
+Syria,PwrIndx: 1.8861,87
+Lithuania,PwrIndx: 1.8949,88
+Tanzania,PwrIndx: 1.9111,89
+New Zealand,PwrIndx: 1.9258,90
+Slovenia,PwrIndx: 1.9404,91
+Mozambique,PwrIndx: 1.9769,92
+Mongolia,PwrIndx: 1.9987,93
+Ireland,PwrIndx: 2.0661,94
+Georgia,PwrIndx: 2.0779,95
+Guatemala,PwrIndx: 2.1277,96
+Uruguay,PwrIndx: 2.1537,97
+Yemen,PwrIndx: 2.1617,98
+Cameroon,PwrIndx: 2.1689,99
+Tajikistan,PwrIndx: 2.1749,100
+Armenia,PwrIndx: 2.2016,101
+Latvia,PwrIndx: 2.2316,102
+Honduras,PwrIndx: 2.2575,103
+Mali,PwrIndx: 2.2598,104
+Zimbabwe,PwrIndx: 2.2801,105
+Estonia,PwrIndx: 2.3201,106
+Uganda,PwrIndx: 2.3252,107
+Ivory Coast,PwrIndx: 2.3884,108
+Kyrgyzstan,PwrIndx: 2.3969,109
+Luxembourg,PwrIndx: 2.4429,110
+Zambia,PwrIndx: 2.4461,111
+Ghana,PwrIndx: 2.4566,112
+South Sudan,PwrIndx: 2.4645,113
+North Macedonia,PwrIndx: 2.4956,114
+Dominican Republic,PwrIndx: 2.5853,115
+Nicaragua,PwrIndx: 2.5894,116
+Republic of the Congo,PwrIndx: 2.6259,117
+Lebanon,PwrIndx: 2.6521,118
+Eritrea,PwrIndx: 2.6841,119
+Niger,PwrIndx: 2.6867,120
+Afghanistan,PwrIndx: 2.7342,121
+Namibia,PwrIndx: 2.7414,122
+Mauritania,PwrIndx: 2.7919,123
+Nepal,PwrIndx: 2.8037,124
+Laos,PwrIndx: 2.8672,125
+Senegal,PwrIndx: 2.8925,126
+Burkina Faso,PwrIndx: 2.9213,127
+Montenegro,PwrIndx: 2.9782,128
+El Salvador,PwrIndx: 2.9973,129
+Botswana,PwrIndx: 2.9993,130
+Madagascar,PwrIndx: 3.0381,131
+Gabon,PwrIndx: 3.0432,132
+Bosnia and Herzegovina,PwrIndx: 3.1291,133
+Iceland,PwrIndx: 3.4013,134
+Panama,PwrIndx: 3.5011,135
+Moldova,PwrIndx: 3.6225,136
+Somalia,PwrIndx: 3.7393,137
+Benin,PwrIndx: 3.8963,138
+Kosovo,PwrIndx: 3.8041,139
+Sierra Leone,PwrIndx: 3.9201,140
+Liberia,PwrIndx: 3.9275,141
+Suriname,PwrIndx: 4.0538,142
+Central African Republic,PwrIndx: 4.2381,143
+Beliz,PwrIndx: 4.3602,144
+Bhutan,PwrIndx: 5.7991,145
