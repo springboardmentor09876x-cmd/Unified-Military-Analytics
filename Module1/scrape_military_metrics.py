@@ -127,9 +127,8 @@ df.to_csv("military_raw_data.csv", index=False, encoding="utf-8")
 
 #          ********MERGING WITH EXISTING DATASET**********
 
-lookup_file = "Military_Dataset_Missed_Columns.xlsx"
+lookup_file = "military_data_missed_columns.xlsx"
 #Correcting country name discrepancies
-
 country_mapping = {
     "Democratic Republic of the Congo": "Congo (Democratic Republic Of The)",
     "Republic of the Congo": "Congo",
