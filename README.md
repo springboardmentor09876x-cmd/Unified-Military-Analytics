@@ -1,4 +1,4 @@
-# Unified-Militar# Unified Military Analytics
+# Unified Military Analytics
 
 A data engineering and analytics pipeline that collects, cleans, and structures global military statistics from **Global Firepower** to create an analysis-ready dataset for interactive dashboards and military intelligence visualization.
 
@@ -42,10 +42,20 @@ Data Cleaning & Structuring
 Clean Military Dataset
         │
         ▼
-Tableau Dashboard
+Module 3
+GDP Dataset Integration
         │
         ▼
-Military Analytics
+Country Metadata Mapping
+        │
+        ▼
+Feature Engineering
+        │
+        ▼
+KPI Generation
+        │
+        ▼
+Tableau Ready Dataset
 ```
 
 ---
@@ -53,20 +63,17 @@ Military Analytics
 # Project Structure
 
 ```text
-## Project Structure
 
-```text
 Unified-Military-Analytics/
 │
 ├── military_raw_data.csv          # Raw dataset generated after web scraping
 ├── military_cleaned.csv           # Cleaned dataset ready for analysis and Tableau
-│
 ├── scrape_military_metrics.ipynb  # Module 1: Web scraping and raw data generation
 ├── clean_data.ipynb               # Module 2: Data cleaning and preprocessing
-│
+├── military_final.xlsx          # Module 3: KPI engineered Tableau dataset
+├── generate_kpis.py             # Module 3: KPI feature engineering pipeline
 └── README.md                      # Project documentation
 ```
-
 ---
 
 # Module 1: Data Collection & Web Scraping
@@ -225,6 +232,109 @@ Generate the cleaned dataset.
 military_cleaned.csv
 ```
 
+# Module 3: KPI Feature Engineering & Tableau Preparation
+
+## Objective
+
+Enhance the cleaned military dataset by integrating economic and regional metadata and generating analytical KPIs required for military comparison, ranking analysis, and Tableau dashboard development.
+
+---
+
+## Features
+
+* Integration of GDP and country metadata datasets
+* Country-wise economic enrichment
+* Feature engineering for military analytics
+* Generation of derived performance indicators
+* Tableau-ready dataset preparation
+* Export of final analytical dataset
+
+---
+
+## Data Enrichment
+
+The cleaned military dataset is enriched with:
+
+### Economic Indicators
+
+* GDP (USD)
+* GDP Rank
+* Defense Budget to GDP Ratio
+
+### Regional Metadata
+
+* Region
+* Income Group
+* Continent Classification
+
+### Alliance Information
+
+* NATO Membership Flag
+
+---
+
+## Engineered KPIs
+
+### Power Index Rank Gap
+
+Measures the difference between economic ranking and military ranking.
+
+Formula:
+
+```
+Power Index Rank Gap = GDP Rank - Global Firepower Rank
+```
+
+---
+
+### Assets per Capita
+
+Measures military asset availability relative to population size.
+
+Formula:
+
+```
+Assets per Capita = Total Military Assets / Total Population
+```
+
+---
+
+### Budget-to-GDP Ratio
+
+Measures defense spending intensity relative to national GDP.
+
+Formula:
+
+```
+Budget-to-GDP Ratio = (Defense Budget / GDP) × 100
+```
+
+---
+
+## Output Files
+
+```
+military_final.xlsx
+```
+
+Contains:
+
+* Original military indicators
+* Economic indicators
+* Regional metadata
+* Engineered KPIs
+* NATO classification
+
+---
+
+## Technologies Used
+
+* Python
+* Pandas
+* Excel
+* Data Engineering
+* Feature Engineering
+
 ---
 
 # Dataset Pipeline
@@ -272,6 +382,13 @@ Visualization
 
 * Data Cleaning Notebook
 * Clean Military Dataset
+
+---
+## Module 3 
+
+* KPI Generation Script 
+* Final Analysis Dataset
+* Tableau-ready structured data
 
 ---
 
