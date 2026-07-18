@@ -1,18 +1,23 @@
-# Tableau Dashboard Prototype
+# Module 4 – Dashboard Planning and Prototyping
 
-This folder contains the Tableau dashboard developed for **Module 4 – Dashboard Planning and Prototyping**.
+## Deliverables
 
-## Dashboard Name
-Unified Military Analytics Dashboard
+### Storyboards
+The storyboard layouts were designed in Tableau as dashboard wireframes for:
+- Quick Stats Dashboard
+- Nation Overview Dashboard
+- Compare Powers Dashboard
+- Coalition Builder Dashboard
 
-## Features
-- Interactive filtering by country
-- Defense Budget Analysis
-- Total Military Assets Analysis
-- Assets Per Capita Analysis
-- Budget-to-GDP Ratio Analysis
+These dashboards represent the planned layout and navigation only, as required by the module.
 
-## Tool Used
-- Tableau Public
+### Dashboard Prototype
+The Tableau workbook includes one operational dashboard:
+- Unified Military Analytics Dashboard
 
-The Tableau workbook, screenshots, and public dashboard link are included in this folder.
+Features:
+- Interactive filtering
+- Defense Budget analysis
+- Military Assets analysis
+- Assets Per Capita analysis
+- Budget-to-GDP Ratio analysis
