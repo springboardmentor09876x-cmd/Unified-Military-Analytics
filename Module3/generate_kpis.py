@@ -25,12 +25,14 @@ print(df[["country", "power_index_rank_gap", "total_assets", "assets_per_capita"
 
 
 #----------------------Create long format--------------
+
 long_df = df.melt( id_vars=["country","continent","region","nato_member"],    
                   value_vars=["power_index_rank_gap", "assets_per_capita", "budget_to_gdp_ratio"],
                   var_name="KPI",value_name="Value" )  #melt() reshapes the dataframe
 
 
 #------------------Exporting the dataframes to an Excel file-----------------
+
 with pd.ExcelWriter("military_final.xlsx") as writer:
     df.to_excel(writer, sheet_name="Wide_Format", index=False)
     long_df.to_excel(writer, sheet_name="Long_Format", index=False)
