@@ -1,4 +1,4 @@
-# Unified-Militar# Unified Military Analytics
+# Unified Military Analytics
 
 A data engineering and analytics pipeline that collects, cleans, and structures global military statistics from **Global Firepower** to create an analysis-ready dataset for interactive dashboards and military intelligence visualization.
 
@@ -42,10 +42,20 @@ Data Cleaning & Structuring
 Clean Military Dataset
         │
         ▼
-Tableau Dashboard
+Module 3
+GDP Dataset Integration
         │
         ▼
-Military Analytics
+Country Metadata Mapping
+        │
+        ▼
+Feature Engineering
+        │
+        ▼
+KPI Generation
+        │
+        ▼
+Tableau Ready Dataset
 ```
 
 ---
@@ -53,9 +63,7 @@ Military Analytics
 # Project Structure
 
 ```text
-## Project Structure
 
-```text
 Unified-Military-Analytics/
 │
 ├── military_raw_data.csv          # Raw dataset generated after web scraping
@@ -273,7 +281,9 @@ Measures the difference between economic ranking and military ranking.
 
 Formula:
 
+```
 Power Index Rank Gap = GDP Rank - Global Firepower Rank
+```
 
 ---
 
@@ -283,7 +293,9 @@ Measures military asset availability relative to population size.
 
 Formula:
 
+```
 Assets per Capita = Total Military Assets / Total Population
+```
 
 ---
 
@@ -293,38 +305,17 @@ Measures defense spending intensity relative to national GDP.
 
 Formula:
 
+```
 Budget-to-GDP Ratio = (Defense Budget / GDP) × 100
-
----
-
-## Data Processing Pipeline
-
-
-Clean Military Dataset
-│
-▼
-GDP Dataset Integration
-│
-▼
-Country Metadata Mapping
-│
-▼
-Feature Engineering
-│
-▼
-KPI Generation
-│
-▼
-Tableau Ready Dataset
-
+```
 
 ---
 
 ## Output Files
 
-
+```
 military_final.xlsx
-
+```
 
 Contains:
 
