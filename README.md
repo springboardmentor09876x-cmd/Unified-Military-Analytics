@@ -2,12 +2,16 @@
 
 ## 📖 Project Overview
 
-The **Unified Military Analytics and Comparison Dashboard** is a data analytics project designed to collect, process, and prepare global military data for visualization and comparison. The project uses publicly available data from **GlobalFirepower** to build a structured dataset that will later be used for KPI engineering and interactive dashboards.
+The **Unified Military Analytics and Comparison Dashboard** is a data analytics project that collects, processes, analyzes, and visualizes global military power data using publicly available information from **GlobalFirepower**.
 
-This repository currently contains the implementation of:
+The project follows a modular pipeline that includes web scraping, data cleaning, KPI engineering, and dashboard prototyping. The processed data is designed to support interactive military analytics dashboards for comparing countries and analyzing defense capabilities.
+
+This repository currently contains:
 
 - ✅ Module 1 – Web Scraping and Data Collection
 - ✅ Module 2 – Data Cleaning and Structuring
+- ✅ Module 3 – KPI Feature Engineering
+- ✅ Module 4 – Dashboard Planning and Prototyping
 
 ---
 
@@ -15,9 +19,10 @@ This repository currently contains the implementation of:
 
 - Collect military data for 140+ countries.
 - Build a structured raw dataset.
-- Clean and standardize the collected data.
-- Prepare the dataset for KPI engineering.
-- Enable future dashboard development using Power BI/Tableau.
+- Clean and standardize military statistics.
+- Engineer meaningful KPIs for military analysis.
+- Prepare datasets for dashboard development.
+- Design an interactive military analytics dashboard prototype.
 
 ---
 
@@ -26,66 +31,88 @@ This repository currently contains the implementation of:
 ```
 Unified-Military-Analytics/
 │
-├── scrape_military_metrics.ipynb
-├── military_raw_data.csv
-├── clean_data.ipynb
-├── military_cleaned.csv
-├── README.md
-└── requirements.txt
+├── Module1-Scrapping and execution/
+│   ├── Military_Data_Scraper_Nagashree.ipynb
+│   └── military_raw_data.csv
+│
+├── Module2-Data cleaning/
+│   ├── clean_data.ipynb
+│   └── military_cleaned.csv
+│
+├── Module3-KPI Feature Engineering/
+│   ├── generate_kpis.ipynb
+│   └── military_final.xlsx
+│
+├── Module4-Dashboard Planning and Prototyping/
+│   └── dashboard_planning.ipynb
+│
+└── README.md
 ```
 
 ---
 
 # 🛠️ Technologies Used
 
-### Programming Language
+## Programming Language
+
 - Python 3.x
 
-### Libraries
+## Python Libraries
+
 - Pandas
 - NumPy
 - Requests
 - BeautifulSoup4
-- Regular Expressions (re)
+- Plotly
+- OpenPyXL
 - pathlib
+- re
 
-### Development Tools
+## Development Tools
+
 - Jupyter Notebook
 - Git
 - GitHub
 
-### Visualization (Upcoming Modules)
-- Power BI
-- Tableau
+## Visualization Tools
+
+- Plotly
+- Streamlit (Prototype)
+- Power BI (Future)
+- Tableau (Future)
 
 ---
 
 # 📊 Dataset Information
 
-### Source
-GlobalFirepower (https://www.globalfirepower.com/)
+## Source
 
-### Dataset Includes
+GlobalFirepower
+
+https://www.globalfirepower.com/
+
+## Dataset Includes
 
 - Country
 - Power Index
-- Population
-- Military Manpower
+- GDP
+- Defense Budget
+- Total Population
 - Active Personnel
 - Reserve Personnel
-- Aircraft
+- Total Military Aircraft
 - Tanks
 - Armored Fighting Vehicles
+- Artillery
+- Rocket Projectors
 - Naval Fleet
-- Defense Budget
-- GDP
+- Total Military Assets
 - Labour Force
 - Oil Resources
 - Natural Gas Resources
 - Coal Resources
-- Geographic Information
-- Continent
 - Region
+- Continent
 - Alliance
 
 **Countries Covered:** 140+
@@ -96,20 +123,20 @@ GlobalFirepower (https://www.globalfirepower.com/)
 
 ## Description
 
-Module 1 focuses on collecting military statistics from GlobalFirepower using Python web scraping techniques. The extracted information is stored in a structured CSV file for further processing.
+Module 1 focuses on collecting military statistics from GlobalFirepower using Python web scraping techniques.
 
-### Tasks Performed
+## Tasks Performed
 
 - Read country URLs
-- Scrape military statistics
-- Extract country-wise metrics
+- Extract military statistics
+- Scrape country-wise data
 - Store raw dataset
-- Export to CSV
+- Export dataset to CSV
 
-### Deliverables
+## Deliverables
 
-- `scrape_military_metrics.ipynb`
-- `military_raw_data.csv`
+- Military_Data_Scraper_Nagashree.ipynb
+- military_raw_data.csv
 
 ---
 
@@ -117,23 +144,78 @@ Module 1 focuses on collecting military statistics from GlobalFirepower using Py
 
 ## Description
 
-Module 2 prepares the raw dataset for analysis by cleaning inconsistent values, standardizing column names, handling missing values, and validating the final dataset.
+Module 2 prepares the raw dataset for analysis by cleaning inconsistent values, standardizing columns, handling missing values, and validating the dataset.
 
-### Tasks Performed
+## Tasks Performed
 
-- Removed commas, percentage symbols, currency symbols, and unwanted characters
-- Removed tabs, newline characters, and extra spaces
+- Removed commas and unwanted symbols
+- Removed tabs and newline characters
 - Standardized column names
-- Converted numeric values into appropriate data types
+- Converted numeric values
+- Removed duplicates
 - Handled missing values
-- Removed duplicate records
-- Validated the cleaned dataset
-- Generated a cleaned CSV file
+- Validated cleaned dataset
+- Exported cleaned CSV
 
-### Deliverables
+## Deliverables
 
-- `clean_data.ipynb`
-- `military_cleaned.csv`
+- clean_data.ipynb
+- military_cleaned.csv
+
+---
+
+# 📈 Module 3 – KPI Feature Engineering
+
+## Description
+
+Module 3 transforms the cleaned dataset into an analytical dataset by generating KPIs required for military comparison dashboards.
+
+## KPIs Created
+
+- Power Index Rank
+- Power Index Rank Gap
+- Assets per Capita
+- Budget-to-GDP Ratio
+- Total Military Assets
+- GDP Rank
+- NATO Flag
+
+## Additional Processing
+
+- Added Region
+- Added Continent
+- Added Alliance Information
+- Generated Wide Format
+- Generated Long Format
+- Created KPI Definition Sheet
+
+## Deliverables
+
+- generate_kpis.ipynb
+- military_final.xlsx
+
+---
+
+# 📊 Module 4 – Dashboard Planning and Prototyping
+
+## Description
+
+Module 4 focuses on designing and prototyping an interactive military analytics dashboard using the KPI dataset.
+
+## Dashboard Components
+
+- Dashboard Header
+- KPI Cards
+- Top 10 Countries by Power Index
+- Top 10 Defense Budget
+- Military Assets by Continent
+- Defense Budget vs GDP
+- Global Military Power Map
+- Active Personnel Analysis
+
+## Deliverables
+
+- dashboard_planning.ipynb
 
 ---
 
@@ -146,78 +228,92 @@ GlobalFirepower
 Web Scraping
         │
         ▼
-military_raw_data.csv
+Raw Dataset
         │
         ▼
 Data Cleaning
         │
         ▼
-Column Standardization
+KPI Feature Engineering
         │
         ▼
-Missing Value Handling
+Dashboard Planning
         │
         ▼
-Data Validation
-        │
-        ▼
-military_cleaned.csv
+Interactive Military Analytics Dashboard
 ```
 
 ---
 
 # 📈 Features Implemented
 
-### Module 1
+## Module 1
 
-- Web scraping using Python
-- Automatic data extraction
+- Web scraping
+- Automated data extraction
 - Structured CSV generation
 
-### Module 2
+## Module 2
 
 - Data cleaning
-- Column standardization
+- Standardization
 - Numeric conversion
 - Missing value handling
 - Duplicate removal
-- Dataset validation
+- Data validation
+
+## Module 3
+
+- KPI Engineering
+- Rank Calculations
+- Assets per Capita
+- Budget-to-GDP Ratio
+- Metadata Enrichment
+- Excel Dashboard Dataset
+
+## Module 4
+
+- Dashboard Prototype
+- KPI Cards
+- Interactive Charts
+- Military Analytics Visualization
+- Plotly Visualizations
 
 ---
 
 # ▶️ Getting Started
 
-## Clone the Repository
+## Clone Repository
 
 ```bash
-git clone https://github.com/<your-username>/Unified-Military-Analytics.git
+git clone https://github.com/springboardmentor09876x-cmd/Unified-Military-Analytics.git
 ```
 
-## Navigate to the Project Folder
+## Navigate to Repository
 
 ```bash
 cd Unified-Military-Analytics
 ```
 
-## Install Required Libraries
+## Install Dependencies
 
 ```bash
-pip install pandas numpy requests beautifulsoup4
+pip install pandas numpy requests beautifulsoup4 plotly openpyxl
 ```
 
 ---
 
 # ▶️ Running the Project
 
-## Module 1 – Web Scraping
+## Module 1
 
-Open and run:
+Run:
 
 ```
-scrape_military_metrics.ipynb
+Military_Data_Scraper_Nagashree.ipynb
 ```
 
-Output:
+Output
 
 ```
 military_raw_data.csv
@@ -225,15 +321,15 @@ military_raw_data.csv
 
 ---
 
-## Module 2 – Data Cleaning
+## Module 2
 
-Open and run:
+Run:
 
 ```
 clean_data.ipynb
 ```
 
-Output:
+Output
 
 ```
 military_cleaned.csv
@@ -241,27 +337,57 @@ military_cleaned.csv
 
 ---
 
+## Module 3
+
+Run
+
+```
+generate_kpis.ipynb
+```
+
+Output
+
+```
+military_final.xlsx
+```
+
+---
+
+## Module 4
+
+Run
+
+```
+dashboard_planning.ipynb
+```
+
+Output
+
+Interactive Dashboard Prototype
+
+---
+
 # 📋 Outputs
 
-After running the notebooks, the following files are generated:
-
-- `military_raw_data.csv`
-- `military_cleaned.csv`
+- military_raw_data.csv
+- military_cleaned.csv
+- military_final.xlsx
+- Dashboard Planning Prototype
 
 ---
 
 # 📌 Future Scope
 
-The upcoming modules of this project include:
+Upcoming modules include:
 
-- KPI Feature Engineering
-- Dashboard Planning
 - Quick Stats Dashboard
 - Nation Overview Dashboard
 - Compare Powers Dashboard
 - Coalition Builder Dashboard
+- Dashboard Integration
 - Testing and Validation
-- Documentation and GitHub Packaging
+- Documentation
+- GitHub Release
 
 ---
 
@@ -271,7 +397,9 @@ The upcoming modules of this project include:
 
 Computer Science and Engineering Student
 
-GitHub: https://github.com/Nagashreemurthy21
+GitHub:
+
+https://github.com/Nagashreemurthy21
 
 ---
 
@@ -282,10 +410,11 @@ GitHub: https://github.com/Nagashreemurthy21
 - Pandas
 - NumPy
 - BeautifulSoup
+- Plotly
 - GitHub
 
 ---
 
 # 📄 License
 
-This project is created for educational and academic purposes.
+This project is developed for educational and academic purposes as part of the Unified Military Analytics internship project.
