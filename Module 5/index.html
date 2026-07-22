@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Military Analytics - Module 5</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-2.32.0.min.js" charset="utf-8"></script>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚔️</text></svg>">
+</head>
+
+<body>
+    <div class="sidebar" id="sidebar">
+        <h2>NAVIGATE</h2>
+        <div class="radio-group">
+            <label class="radio-label">
+                <input type="radio" name="view" value="Quick Stats" checked>
+                <span>Quick Stats</span>
+            </label>
+            <label class="radio-label">
+                <input type="radio" name="view" value="Nation Overview">
+                <span>Nation Overview</span>
+            </label>
+        </div>
+        <hr>
+        <small class="sys-time">SYS 2026-07-21 12:00:00 UTC</small>
+    </div>
+
+    <div class="main-content">
+        <button id="sidebar-toggle" class="sidebar-toggle" title="Toggle Sidebar">☰</button>
+        <h1>MILITARY ANALYTICS 2 - Goshen Robert</h1>
+
+        <!-- Quick Stats View -->
+        <div id="quick-stats" class="view-section active">
+            <h3>🌐 Global Overview</h3>
+
+            <div class="filters">
+                <div class="filter-col">
+                    <label>Filter by Continent</label>
+                    <select id="continent-filter">
+                        <option value="All">All</option>
+                    </select>
+                </div>
+                <div class="filter-col">
+                    <label>Filter by Region</label>
+                    <select id="region-filter">
+                        <option value="All">All</option>
+                    </select>
+                </div>
+                <div class="filter-col">
+                    <label>Filter by Alliance</label>
+                    <select id="alliance-filter">
+                        <option value="All">All</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card card-1">
+                    <div class="metric-label">Total Budget (USD)</div>
+                    <div class="metric-value" id="total-budget">$0</div>
+                    <div class="metric-delta delta-up">▲ Active</div>
+                </div>
+                <div class="metric-card card-2">
+                    <div class="metric-label">Total Manpower</div>
+                    <div class="metric-value" id="total-manpower">0</div>
+                    <div class="metric-delta delta-up">▲ Available</div>
+                </div>
+                <div class="metric-card card-3">
+                    <div class="metric-label">Total Assets</div>
+                    <div class="metric-value" id="total-assets">0</div>
+                    <div class="metric-delta delta-down">▼ Deployed</div>
+                </div>
+                <div class="metric-card card-4">
+                    <div class="metric-label">Top Ranked</div>
+                    <div class="metric-value" id="top-ranked-country">N/A</div>
+                    <div class="metric-delta delta-off" id="top-ranked-pi">PI: 0.0000</div>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="charts-row">
+                <div class="chart-container flex-1">
+                    <h4>🔥 Top 10 by Power Index</h4>
+                    <div id="bar-chart" class="plotly-chart"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nation Overview View -->
+        <div id="nation-overview" class="view-section">
+            <h3>🦅 Nation Overview</h3>
+
+            <div class="filters">
+                <div class="filter-col">
+                    <label>Select Country</label>
+                    <input type="text" id="country-input" list="country-list" placeholder="Search for a country...">
+                    <datalist id="country-list"></datalist>
+                </div>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card card-1">
+                    <div class="metric-label">Power Index</div>
+                    <div class="metric-value" id="no-power-index">0.0000</div>
+                    <div class="metric-delta delta-inverse" id="no-rank">Rank: 0</div>
+                </div>
+                <div class="metric-card card-2">
+                    <div class="metric-label">Defense Budget</div>
+                    <div class="metric-value" id="no-defense-budget">$0</div>
+                </div>
+                <div class="metric-card card-3">
+                    <div class="metric-label">Active Personnel</div>
+                    <div class="metric-value" id="no-active-personnel">0</div>
+                </div>
+                <div class="metric-card card-4">
+                    <div class="metric-label">Total Assets</div>
+                    <div class="metric-value" id="no-total-assets">0</div>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="charts-row">
+                <div class="chart-container flex-1">
+                    <h4>🎯 Military Balance Radar</h4>
+                    <div id="radar-chart" class="plotly-chart"></div>
+                </div>
+                <div class="chart-container flex-1">
+                    <h4>🚀 Hardware Breakdown</h4>
+                    <div id="hw-bar-chart" class="plotly-chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
