@@ -1,0 +1,216 @@
+/* Base styles */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #0A0A0F;
+    color: #E0E0E0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar styles matching config.toml */
+.sidebar {
+    width: 250px;
+    background-color: #151520;
+    padding: 2rem 1rem;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.sidebar.collapsed {
+    width: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.radio-label input[type="radio"] {
+    margin-right: 10px;
+    accent-color: #B829EA;
+}
+
+.sidebar hr {
+    border: 1px solid #33334D;
+    margin: 20px 0;
+}
+
+.sys-time {
+    color: #FF007F;
+    text-shadow: 0 0 5px #FF007F;
+}
+
+/* Main content */
+.main-content {
+    flex-grow: 1;
+    padding: 2rem;
+    box-sizing: border-box;
+    overflow-y: auto;
+    position: relative;
+}
+
+.sidebar-toggle {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: transparent;
+    border: none;
+    color: #FFFFFF;
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 100;
+    text-shadow: 0 0 10px #00F0FF;
+    transition: transform 0.2s;
+}
+
+.sidebar-toggle:hover {
+    transform: scale(1.1);
+    color: #00F0FF;
+}
+
+h1 {
+    text-align: center;
+    color: #FFFFFF;
+    text-shadow: 0 0 10px #00F0FF, 0 0 20px #00F0FF;
+    letter-spacing: 6px;
+    font-weight: 900;
+    margin-bottom: 2rem;
+    margin-top: 0;
+}
+
+h3, h4 {
+    color: #FFFFFF;
+    text-shadow: 0 0 8px rgba(255,255,255,0.3);
+    font-weight: 700;
+    margin-top: 0;
+}
+
+/* Views toggling */
+.view-section {
+    display: none;
+}
+.view-section.active {
+    display: block;
+}
+
+/* Filters */
+.filters {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.filter-col {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.filter-col label {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #B0B0B0;
+}
+
+select, input[type="text"] {
+    background-color: #12131C;
+    color: #FFFFFF;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    outline: none;
+}
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+select:focus, input[type="text"]:focus {
+    border-color: #B829EA;
+}
+
+/* Metrics Grid */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.metric-card {
+    background-color: #12131C;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.metric-label {
+    color: #B0B0B0;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+}
+
+.metric-value {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    margin-bottom: 5px;
+}
+
+.metric-delta {
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.delta-up { color: #00F0FF; }
+.delta-down { color: #FF007F; }
+.delta-off { color: #B0B0B0; }
+.delta-inverse { color: #00F0FF; }
+
+/* Neon Borders & Shadows for individual metric cards */
+.card-1 { border-top: 4px solid #FF007F; box-shadow: 0 5px 25px rgba(255, 0, 127, 0.15); }
+.card-2 { border-top: 4px solid #00F0FF; box-shadow: 0 5px 25px rgba(0, 240, 255, 0.15); }
+.card-3 { border-top: 4px solid #FFD60A; box-shadow: 0 5px 25px rgba(255, 214, 10, 0.15); }
+.card-4 { border-top: 4px solid #B829EA; box-shadow: 0 5px 25px rgba(184, 41, 234, 0.15); }
+
+/* Charts Layout */
+.charts-row {
+    display: flex;
+    gap: 20px;
+}
+.chart-container {
+    background-color: transparent;
+}
+.flex-1 { flex: 1; min-width: 0; }
+.flex-1-5 { flex: 1.5; min-width: 0; }
+.plotly-chart {
+    height: 400px;
+}
