@@ -8,7 +8,7 @@ A data engineering and analytics pipeline that collects, cleans, and structures 
 
 Unified Military Analytics is designed to automate the collection and preprocessing of global military data. The project extracts military, economic, infrastructure, manpower, and geographical indicators from multiple Global Firepower pages, transforms the raw data into a standardized dataset, and prepares it for visualization and analytical applications.
 
-The project is divided into multiple modules, with the first two modules focusing on data acquisition and preprocessing.
+The project follows a modular data engineering and analytics pipeline consisting of data collection, preprocessing, feature engineering, dashboard planning, and interactive visualization using Tableau.
 
 ---
 
@@ -43,19 +43,20 @@ Clean Military Dataset
         │
         ▼
 Module 3
-GDP Dataset Integration
-        │
-        ▼
-Country Metadata Mapping
-        │
-        ▼
-Feature Engineering
-        │
-        ▼
-KPI Generation
+KPI Feature Engineering
         │
         ▼
 Tableau Ready Dataset
+        │
+        ▼
+Module 4
+Dashboard Planning & Prototyping
+        │
+        ▼
+Tableau Dashboard Development
+        │
+        ▼
+Military Analytics
 ```
 
 ---
@@ -63,17 +64,24 @@ Tableau Ready Dataset
 # Project Structure
 
 ```text
-
 Unified-Military-Analytics/
 │
-├── military_raw_data.csv          # Raw dataset generated after web scraping
-├── military_cleaned.csv           # Cleaned dataset ready for analysis and Tableau
-├── scrape_military_metrics.ipynb  # Module 1: Web scraping and raw data generation
-├── clean_data.ipynb               # Module 2: Data cleaning and preprocessing
-├── military_final.xlsx          # Module 3: KPI engineered Tableau dataset
-├── generate_kpis.py             # Module 3: KPI feature engineering pipeline
-└── README.md                      # Project documentation
+├── military_raw_data.csv
+├── military_cleaned.csv
+├── military_final.xlsx
+├── military_long.xlsx
+│
+├── scrape_military_metrics.ipynb
+├── clean_data.ipynb
+├── generate_kpis.py
+│
+├── Storyboard for dashboard layouts.pdf
+├── dashboard application prototype with link.pdf
+│
+├── README.md
+└── requirements.txt
 ```
+
 ---
 
 # Module 1: Data Collection & Web Scraping
@@ -232,6 +240,17 @@ Generate the cleaned dataset.
 military_cleaned.csv
 ```
 
+# Technologies
+
+* Python
+* Pandas
+* BeautifulSoup
+* Requests
+* Regular Expressions
+* Jupyter Notebook
+
+---
+
 # Module 3: KPI Feature Engineering & Tableau Preparation
 
 ## Objective
@@ -337,37 +356,142 @@ Contains:
 
 ---
 
-# Dataset Pipeline
+# Module 4: Dashboard Planning & Prototyping
+
+## Objective
+
+Design the complete analytical dashboard architecture before implementation by creating storyboard layouts, navigation flow, user interactions, and a high-fidelity dashboard prototype for military intelligence visualization.
+
+---
+
+## Features
+
+* Dashboard storyboard planning
+* High-fidelity UI prototype
+* Navigation flow design
+* KPI mapping
+* Interactive filter planning
+* Tableau-ready dashboard layout
+
+---
+
+## Dashboard Modules
+
+### Cover Dashboard
+
+* Project introduction
+* Dashboard navigation
+* Military analytics overview
+
+---
+
+### Quick Stats
+
+* Total Countries
+* Average GDP
+* Defense Budget
+* Average Power Index
+* Top Military Powers
+* Assets per Capita
+* NATO Distribution
+
+---
+
+### Nation Overview
+
+* Country Profile
+* Military Assets
+* GDP
+* Population
+* Defense Budget
+* Capability Radar
+* Personnel Analysis
+
+---
+
+### Compare Powers
+
+* Country A vs Country B
+* KPI Comparison
+* Radar Chart
+* Military Asset Comparison
+* Difference Summary
+
+---
+
+### Coalition Builder
+
+* Multi-country Selection
+* Coalition Statistics
+* Combined Defense Budget
+* Combined Personnel
+* Coalition vs Reference Country
+* Strategic Insights
+
+---
+
+### Navigation Flow
+
+Designed navigation between all dashboard pages including:
+
+* Home
+* Quick Stats
+* Nation Overview
+* Compare Powers
+* Coalition Builder
+
+---
+
+## Deliverables
+
+* Dashboard Storyboard
+* Dashboard Prototype
+* Navigation Flow Design
+
+---
+
+## Output Files
 
 ```
-Web Pages
-      │
-      ▼
-Scraping
+Storyboard for dashboard layouts.pdf
+
+dashboard application prototype with link.pdf
+```
+
+---
+
+## Technologies Used
+
+* Figma
+* Tableau
+* UI/UX Design
+* Dashboard Planning
+
+---
+
+# Dataset Pipeline
+
+```text
+Web Scraping
       │
       ▼
 Raw Dataset
       │
       ▼
-Cleaning
+Data Cleaning
       │
       ▼
-Structured Dataset
+Feature Engineering
       │
       ▼
-Visualization
+Tableau Ready Dataset
+      │
+      ▼
+Dashboard Planning
+      │
+      ▼
+Interactive Dashboard
 ```
-
----
-
-# Technologies
-
-* Python
-* Pandas
-* BeautifulSoup
-* Requests
-* Regular Expressions
-* Jupyter Notebook
 
 ---
 
@@ -383,27 +507,63 @@ Visualization
 * Data Cleaning Notebook
 * Clean Military Dataset
 
----
-## Module 3 
+## Module 3
 
-* KPI Generation Script 
-* Final Analysis Dataset
-* Tableau-ready structured data
+* KPI Generation Script
+* Tableau-ready Dataset
+* Feature Engineered Dataset
+
+## Module 4
+
+* Dashboard Storyboard
+* Dashboard Prototype
+* Navigation Flow
 
 ---
 
 # Future Modules
 
-* Tableau Dashboard Development
-* Exploratory Data Analysis
-* Military Strength Comparison
-* Predictive Analytics
+* Interactive Tableau Dashboard
+* Drill-down Analytics
+* Time-series Military Trends
+* Predictive Military Intelligence
 * Machine Learning Models
-* Interactive Web Dashboard
-* API Integration
+* REST API Integration
+* Web Deployment
 
 ---
 
+# Dashboard Preview
+
+## Module 4 Prototype
+
+Dashboard storyboard and prototype created during Module 4.
+
+### Cover Page
+
+<img width="1452" height="913" alt="Screenshot 2026-07-23 234525 webp" src="https://github.com/user-attachments/assets/7e1b3f9e-e95a-4da7-a0e0-f04563b86e71" />
+
+### Quick Stats
+
+<img width="1447" height="796" alt="Screenshot 2026-07-23 234558" src="https://github.com/user-attachments/assets/c775b99a-1197-4b5b-b856-ec8138a536a7" />
+
+### Nation Overview
+
+<img width="1455" height="836" alt="Screenshot 2026-07-23 234614" src="https://github.com/user-attachments/assets/60e949b9-dffe-4cfa-b6df-ba1d2e5c313e" />
+
+### Compare Powers
+
+<img width="1455" height="842" alt="Screenshot 2026-07-23 234630" src="https://github.com/user-attachments/assets/7a75d0b5-6a0c-44f3-8f33-f150ed4e1029" />
+
+### Coalition Builder
+
+<img width="1456" height="817" alt="Screenshot 2026-07-23 234647" src="https://github.com/user-attachments/assets/5e61f529-f7ab-4447-a021-67ceda8eca1f" />
+
+### Navigation Flow
+
+<img width="1456" height="837" alt="Screenshot 2026-07-23 234703" src="https://github.com/user-attachments/assets/312caa28-74f2-4f27-b9b4-3ea9401906ce" />
+
+---
 # License
 
 This project is developed for educational, research, and analytical purposes. All data belongs to its respective source and is used in accordance with publicly available information.
