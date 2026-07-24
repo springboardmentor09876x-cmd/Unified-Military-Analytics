@@ -221,7 +221,115 @@ function updateQuickStats() {
     }
     
     drawTop10Chart(filtered);
+    drawKPIChart(filtered);
+    drawDonutCharts(filtered);
     drawWorldMap(filtered);
+}
+
+function drawKPIChart(filtered) {
+    if (filtered.length === 0) {
+        Plotly.purge('kpi-budget-gdp');
+        return;
+    }
+    
+    // Average Budget to GDP Ratio
+    const avgRatio = filtered.reduce((sum, d) => sum + (d.budget_to_gdp_ratio || 0), 0) / filtered.length;
+    const percentage = avgRatio * 100;
+    
+    const data = [
+        {
+            type: "indicator",
+            mode: "gauge+number",
+            value: percentage,
+            number: { suffix: "%", valueformat: ".2f", font: { color: "#FFFFFF" } },
+            title: { text: "Avg Budget to GDP", font: { color: "#FFFFFF" } },
+            gauge: {
+                axis: { range: [null, 15], tickwidth: 1, tickcolor: "rgba(255,255,255,0.5)" },
+                bar: { color: "#00F0FF" },
+                bgcolor: "rgba(255,255,255,0.1)",
+                borderwidth: 2,
+                bordercolor: "transparent",
+                steps: [
+                    { range: [0, 2], color: "rgba(57, 255, 20, 0.3)" },
+                    { range: [2, 5], color: "rgba(255, 214, 10, 0.3)" },
+                    { range: [5, 15], color: "rgba(255, 0, 127, 0.3)" }
+                ]
+            }
+        }
+    ];
+
+    const layout = {
+        paper_bgcolor: chartBg,
+        plot_bgcolor: chartBg,
+        margin: { l: 20, r: 20, t: 40, b: 20 },
+        font: { color: '#FFFFFF' }
+    };
+    
+    Plotly.newPlot('kpi-budget-gdp', data, layout, {responsive: true});
+}
+
+function drawDonutCharts(filtered) {
+    if (filtered.length === 0) {
+        Plotly.purge('donut-ppp');
+        Plotly.purge('donut-assets');
+        Plotly.purge('donut-naval');
+        Plotly.purge('donut-air');
+        Plotly.purge('donut-land');
+        Plotly.purge('donut-budget');
+        return;
+    }
+
+    const createDonutData = (sortField, isSumFunction = null) => {
+        let sorted = [...filtered].sort((a, b) => {
+            const valA = isSumFunction ? isSumFunction(a) : (a[sortField] || 0);
+            const valB = isSumFunction ? isSumFunction(b) : (b[sortField] || 0);
+            return valB - valA;
+        });
+        
+        const top5 = sorted.slice(0, 5);
+        const values = top5.map(d => isSumFunction ? isSumFunction(d) : (d[sortField] || 0));
+        const labels = top5.map(d => d.country);
+        
+        return {
+            values: values,
+            labels: labels,
+            type: 'pie',
+            hole: .4,
+            textinfo: 'label+percent',
+            textposition: 'inside',
+            marker: {
+                colors: customNeonColors
+            },
+            hoverinfo: 'label+value'
+        };
+    };
+
+    const layout = {
+        paper_bgcolor: chartBg,
+        plot_bgcolor: chartBg,
+        showlegend: false,
+        margin: { l: 20, r: 20, t: 20, b: 20 },
+        font: { color: '#FFFFFF' }
+    };
+
+    // 1. PPP
+    Plotly.newPlot('donut-ppp', [createDonutData('purchasing_power_parity_usd')], layout, {responsive: true});
+    
+    // 2. Military Assets
+    Plotly.newPlot('donut-assets', [createDonutData('total_military_assets')], layout, {responsive: true});
+    
+    // 3. Naval Fleet
+    Plotly.newPlot('donut-naval', [createDonutData('total_naval_fleet')], layout, {responsive: true});
+    
+    // 4. Air Fleet
+    Plotly.newPlot('donut-air', [createDonutData('total_military_aircraft')], layout, {responsive: true});
+    
+    // 5. Land Fleet (Sum of land vehicles)
+    const getLandFleet = d => (d.tanks || 0) + (d.armored_fighting_vehicles || 0) + (d.self_propelled_artillery || 0) + (d.towed_artillery || 0) + (d.rocket_projectors || 0);
+    Plotly.newPlot('donut-land', [createDonutData(null, getLandFleet)], layout, {responsive: true});
+    
+    // 6. Defense Budget
+    Plotly.newPlot('donut-budget', [createDonutData('defense_budget_usd')], layout, {responsive: true});
 }
 
 function drawTop10Chart(filtered) {
