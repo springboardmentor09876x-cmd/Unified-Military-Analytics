@@ -1,0 +1,1092 @@
+/*====================================================
+ UNIFIED MILITARY ANALYTICS DASHBOARD
+ Theme : Dark Military Blue
+====================================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/*====================================================
+ GLOBAL
+====================================================*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html,
+body,
+[data-testid="stAppViewContainer"]{
+    background:#061528 !important;
+    color:#ffffff !important;
+}
+
+/* Main App */
+
+.main{
+
+    background:#061528 !important;
+
+}
+
+/* Streamlit Container */
+
+.block-container{
+
+    padding-top:1.2rem;
+
+    padding-left:2rem;
+
+    padding-right:2rem;
+
+    padding-bottom:2rem;
+
+}
+
+/*====================================================
+ HEADINGS
+====================================================*/
+
+h1,h2,h3,h4,h5,h6{
+
+    color:white;
+
+    font-weight:700;
+
+}
+
+p{
+
+    color:#D4E7F8;
+
+}
+
+/*====================================================
+ HEADER CARD
+====================================================*/
+
+.dashboard-header{
+
+    background:linear-gradient(135deg,#081C34,#12355B);
+
+    border-radius:18px;
+
+    padding:28px;
+
+    border:1px solid rgba(92,200,255,.15);
+
+    box-shadow:0 10px 25px rgba(0,0,0,.35);
+
+    margin-bottom:25px;
+
+}
+
+/*====================================================
+ SIDEBAR
+====================================================*/
+
+section[data-testid="stSidebar"]{
+
+    background:#0A2342 !important;
+
+    border-right:1px solid rgba(255,255,255,.08);
+
+}
+
+[data-testid="stSidebarContent"]{
+
+    background:#0A2342 !important;
+
+}
+
+[data-testid="stSidebar"] *{
+
+    color:white !important;
+
+}
+
+/* Sidebar Title */
+
+[data-testid="stSidebar"] h1,
+[data-testid="stSidebar"] h2,
+[data-testid="stSidebar"] h3{
+
+    color:white !important;
+
+}
+
+/*====================================================
+ TEXT INPUT
+====================================================*/
+
+.stTextInput input{
+
+    background:#12355B !important;
+
+    color:white !important;
+
+    border:1px solid #2B5C88 !important;
+
+    border-radius:12px !important;
+
+    height:48px;
+
+}
+
+.stTextInput input::placeholder{
+
+    color:#B8D8F4 !important;
+
+}
+
+/*====================================================
+ SELECTBOX
+====================================================*/
+
+.stSelectbox div[data-baseweb="select"]{
+
+    background:#12355B !important;
+
+    border-radius:12px !important;
+
+    border:1px solid #2B5C88 !important;
+
+}
+
+/*====================================================
+ LABELS
+====================================================*/
+
+label{
+
+    color:white !important;
+
+    font-weight:600;
+
+}
+
+/*====================================================
+ HORIZONTAL LINE
+====================================================*/
+
+hr{
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+/*====================================================
+ SCROLLBAR
+====================================================*/
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#081B33;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#1565C0;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#42A5F5;
+
+}
+/*====================================================
+ MULTISELECT
+====================================================*/
+
+/* Main multiselect container */
+
+.stMultiSelect{
+
+    width:100%;
+
+}
+
+/* Input box */
+
+.stMultiSelect div[data-baseweb="select"]{
+
+    background:#12355B !important;
+
+    border:1px solid #2B5C88 !important;
+
+    border-radius:12px !important;
+
+    min-height:48px;
+
+}
+
+/* Text */
+
+.stMultiSelect input{
+
+    color:white !important;
+
+}
+
+/* Placeholder */
+
+.stMultiSelect input::placeholder{
+
+    color:#BFD7EA !important;
+
+}
+
+/* Dropdown arrow */
+
+.stMultiSelect svg{
+
+    color:white !important;
+
+}
+
+/* Selected Chips */
+
+.stMultiSelect [data-baseweb="tag"]{
+
+    background:#1565C0 !important;
+
+    border:none !important;
+
+    border-radius:8px !important;
+
+    color:white !important;
+
+}
+
+/* Chip Text */
+
+.stMultiSelect [data-baseweb="tag"] span{
+
+    color:white !important;
+
+    font-weight:500;
+
+}
+
+/* Close icon */
+
+.stMultiSelect [data-baseweb="tag"] svg{
+
+    color:white !important;
+
+}
+
+/* Dropdown popup */
+
+div[data-baseweb="popover"]{
+
+    background:#0A2342 !important;
+
+}
+
+/* List */
+
+div[role="listbox"]{
+
+    background:#0A2342 !important;
+
+    border-radius:12px !important;
+
+    border:1px solid #2B5C88 !important;
+
+}
+
+/* Option */
+
+div[role="option"]{
+
+    background:#0A2342 !important;
+
+    color:white !important;
+
+}
+
+/* Hover */
+
+div[role="option"]:hover{
+
+    background:#1565C0 !important;
+
+    color:white !important;
+
+}
+
+/*====================================================
+ SLIDER
+====================================================*/
+
+.stSlider{
+
+    padding-top:8px;
+
+    padding-bottom:12px;
+
+}
+
+/* Active Track */
+
+.stSlider [data-baseweb="slider"] div:nth-child(2){
+
+    background:#42A5F5 !important;
+
+}
+
+/* Handle */
+
+.stSlider [role="slider"]{
+
+    background:#42A5F5 !important;
+
+    border:3px solid white !important;
+
+}
+
+/*====================================================
+ BUTTON
+====================================================*/
+
+.stButton>button{
+
+    width:100%;
+
+    height:48px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:linear-gradient(90deg,#1565C0,#42A5F5);
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.stButton>button:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 8px 20px rgba(66,165,245,.35);
+
+}
+
+/*====================================================
+ DOWNLOAD BUTTON
+====================================================*/
+
+.stDownloadButton>button{
+
+    width:100%;
+
+    height:50px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:linear-gradient(90deg,#1565C0,#42A5F5);
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.stDownloadButton>button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 8px 20px rgba(66,165,245,.35);
+
+}
+
+/*====================================================
+ METRIC CONTAINER
+====================================================*/
+
+[data-testid="metric-container"]{
+
+    background:#0C2340;
+
+    border-radius:14px;
+
+    padding:15px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:0 8px 18px rgba(0,0,0,.25);
+
+}
+
+[data-testid="metric-container"]:hover{
+
+    border:1px solid rgba(66,165,245,.4);
+
+}
+
+/* Metric Value */
+
+[data-testid="metric-container"] label{
+
+    color:#BFD7EA !important;
+
+}
+
+/*====================================================
+ CHECKBOX
+====================================================*/
+
+.stCheckbox{
+
+    color:white;
+
+}
+
+/*====================================================
+ RADIO
+====================================================*/
+
+.stRadio{
+
+    color:white;
+
+}
+/*====================================================
+ KPI CARDS
+====================================================*/
+
+.metric-card{
+
+    background:linear-gradient(135deg,#0A2342,#12355B);
+
+    border-radius:18px;
+
+    padding:22px;
+
+    min-height:150px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    border:1px solid rgba(92,200,255,.15);
+
+    box-shadow:0 10px 20px rgba(0,0,0,.30);
+
+    transition:all .35s ease;
+
+}
+
+.metric-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 12px 30px rgba(66,165,245,.30);
+
+    border-color:#42A5F5;
+
+}
+
+/* KPI Icon */
+
+.metric-icon{
+
+    font-size:34px;
+
+    margin-bottom:10px;
+
+}
+
+/* KPI Title */
+
+.metric-title{
+
+    color:#CFE8FF;
+
+    font-size:15px;
+
+    font-weight:500;
+
+    margin-bottom:8px;
+
+}
+
+/* KPI Value */
+
+.metric-value{
+
+    color:white;
+
+    font-size:30px;
+
+    font-weight:700;
+
+}
+
+
+/*====================================================
+ CHART CARD
+====================================================*/
+
+.chart-card{
+
+    background:#0C2340;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:0 10px 20px rgba(0,0,0,.28);
+
+    margin-bottom:22px;
+
+    transition:.3s;
+
+}
+
+.chart-card:hover{
+
+    transform:translateY(-4px);
+
+    border-color:#42A5F5;
+
+}
+
+
+/*====================================================
+ CHART TITLE
+====================================================*/
+
+.chart-title{
+
+    color:white;
+
+    font-size:20px;
+
+    font-weight:600;
+
+    margin-bottom:15px;
+
+}
+
+
+/*====================================================
+ PLOTLY CHART
+====================================================*/
+
+.js-plotly-plot{
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+}
+
+/* Toolbar */
+
+.modebar{
+
+    background:transparent !important;
+
+}
+
+/* Hover Label */
+
+.hoverlayer{
+
+    font-family:'Poppins',sans-serif !important;
+
+}
+
+/*====================================================
+ PLOTLY CONTAINER
+====================================================*/
+
+.element-container:has(.js-plotly-plot){
+
+    background:#0C2340;
+
+    padding:15px;
+
+    border-radius:18px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:0 8px 20px rgba(0,0,0,.28);
+
+    margin-bottom:20px;
+
+    transition:.3s;
+
+}
+
+.element-container:has(.js-plotly-plot):hover{
+
+    border-color:#42A5F5;
+
+}
+
+
+/*====================================================
+ COLUMN SPACING
+====================================================*/
+
+[data-testid="column"]{
+
+    padding-left:8px;
+
+    padding-right:8px;
+
+}
+
+
+/*====================================================
+ MARKDOWN CONTAINERS
+====================================================*/
+
+.element-container{
+
+    margin-bottom:12px;
+
+}
+
+
+/*====================================================
+ ALERTS
+====================================================*/
+
+.stAlert{
+
+    border-radius:12px;
+
+    border:none;
+
+}
+
+
+/*====================================================
+ EXPANDER
+====================================================*/
+
+.streamlit-expanderHeader{
+
+    background:#12355B;
+
+    color:white;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+}
+
+.streamlit-expanderContent{
+
+    background:#0C2340;
+
+    border-radius:0 0 10px 10px;
+
+}
+
+
+/*====================================================
+ IMAGE
+====================================================*/
+
+img{
+
+    border-radius:12px;
+
+}
+
+
+/*====================================================
+ LINKS
+====================================================*/
+
+a{
+
+    color:#5CC8FF;
+
+    text-decoration:none;
+
+}
+
+a:hover{
+
+    color:#8FD3FF;
+
+}
+
+/*====================================================
+ DATAFRAME
+====================================================*/
+
+[data-testid="stDataFrame"]{
+
+    background:#0C2340;
+
+    border-radius:18px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    overflow:hidden;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.30);
+
+}
+
+[data-testid="stDataFrame"] table{
+
+    border-collapse:collapse;
+
+    width:100%;
+
+}
+
+[data-testid="stDataFrame"] thead tr{
+
+    background:#12355B !important;
+
+}
+
+[data-testid="stDataFrame"] th{
+
+    color:white !important;
+
+    font-weight:600;
+
+    padding:12px;
+
+}
+
+[data-testid="stDataFrame"] td{
+
+    color:white;
+
+    background:#0C2340;
+
+    padding:10px;
+
+}
+
+[data-testid="stDataFrame"] tbody tr:hover td{
+
+    background:#163A63;
+
+}
+
+
+/*====================================================
+ TABLE
+====================================================*/
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+th{
+
+    background:#12355B;
+
+    color:white;
+
+}
+
+td{
+
+    color:white;
+
+}
+
+
+/*====================================================
+ NUMBER INPUT
+====================================================*/
+
+.stNumberInput input{
+
+    background:#12355B !important;
+
+    color:white !important;
+
+    border-radius:10px;
+
+}
+
+
+/*====================================================
+ DATE INPUT
+====================================================*/
+
+.stDateInput{
+
+    background:#12355B;
+
+    border-radius:10px;
+
+}
+
+
+/*====================================================
+ TABS
+====================================================*/
+
+.stTabs [role="tab"]{
+
+    background:#12355B;
+
+    color:white;
+
+    border-radius:10px;
+
+    margin-right:5px;
+
+}
+
+.stTabs [aria-selected="true"]{
+
+    background:#1565C0;
+
+}
+
+
+/*====================================================
+ PROGRESS BAR
+====================================================*/
+
+.stProgress>div>div{
+
+    background:#42A5F5 !important;
+
+}
+
+
+/*====================================================
+ INFO BOXES
+====================================================*/
+
+.stSuccess,
+.stInfo,
+.stWarning,
+.stError{
+
+    border-radius:12px;
+
+}
+
+
+/*====================================================
+ FOOTER
+====================================================*/
+
+.footer{
+
+    background:#0A2342;
+
+    border-radius:18px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    text-align:center;
+
+    padding:25px;
+
+    margin-top:30px;
+
+    color:#D6E6F5;
+
+}
+
+
+/*====================================================
+ DIVIDER
+====================================================*/
+
+hr{
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+
+/*====================================================
+ RESPONSIVE
+====================================================*/
+
+@media (max-width:1200px){
+
+.metric-card{
+
+    min-height:140px;
+
+}
+
+.metric-value{
+
+    font-size:26px;
+
+}
+
+.chart-title{
+
+    font-size:19px;
+
+}
+
+}
+
+@media (max-width:992px){
+
+.metric-card{
+
+    min-height:130px;
+
+}
+
+.metric-value{
+
+    font-size:22px;
+
+}
+
+.metric-title{
+
+    font-size:14px;
+
+}
+
+.block-container{
+
+    padding-left:1rem;
+
+    padding-right:1rem;
+
+}
+
+}
+
+@media (max-width:768px){
+
+.metric-card{
+
+    min-height:auto;
+
+}
+
+.chart-title{
+
+    font-size:18px;
+
+}
+
+}
+
+
+/*====================================================
+ ANIMATIONS
+====================================================*/
+
+*{
+
+    transition:all .25s ease;
+
+}
+
+.stButton>button:hover,
+.stDownloadButton>button:hover,
+.metric-card:hover,
+.chart-card:hover{
+
+    transition:.3s;
+
+}
+
+
+/*====================================================
+ REMOVE STREAMLIT MENU
+====================================================*/
+
+#MainMenu{
+
+    visibility:hidden;
+
+}
+
+footer{
+
+    visibility:hidden;
+
+}
+
+header{
+
+    visibility:hidden;
+
+}
+
+
+/*====================================================
+ CUSTOM PAGE TITLE
+====================================================*/
+
+.dashboard-title{
+
+    font-size:42px;
+
+    font-weight:700;
+
+    color:white;
+
+}
+
+.dashboard-subtitle{
+
+    font-size:18px;
+
+    color:#8FD3FF;
+
+}
+
+
+/*====================================================
+ END
+====================================================*/
