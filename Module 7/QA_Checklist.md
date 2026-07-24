@@ -13,6 +13,8 @@
   - [ ] KPIs (Total Budget, Manpower, Assets, Top Ranked) update when filters change.
   - [ ] Top 10 Power Index bar chart updates dynamically.
   - [ ] World Map displays the Power Index gradient and handles filtering.
+  - [ ] Donut charts (Top 5 PPP, Military Assets, Naval Fleet, Air Fleet, Land Fleet, Defence Budget) display and update correctly.
+  - [ ] KPI Chart (Budget to GDP Ratio) updates correctly.
 - **Nation Overview:**
   - [ ] Dropdown/search successfully selects a single country.
   - [ ] Military Balance Radar chart draws accurately.
