@@ -58,7 +58,6 @@ print(
     ].head()
 )
 
-
 # =====================================================
 # Alliance Flag
 # =====================================================
@@ -80,3 +79,4 @@ print(clean_df[["country", "alliance", "alliance_flag"]].head(10))
 clean_df.to_excel("military_final.xlsx", index=False)
 
 print("✓ military_final.xlsx saved successfully")
+
