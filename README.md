@@ -77,6 +77,8 @@ Unified-Military-Analytics/
 │
 ├── Storyboard for dashboard layouts.pdf
 ├── dashboard application prototype with link.pdf
+├── Quick Stats.twbx
+├── Nation Overview.twbx
 │
 ├── README.md
 └── requirements.txt
@@ -397,51 +399,6 @@ Design the complete analytical dashboard architecture before implementation by c
 
 ---
 
-### Nation Overview
-
-* Country Profile
-* Military Assets
-* GDP
-* Population
-* Defense Budget
-* Capability Radar
-* Personnel Analysis
-
----
-
-### Compare Powers
-
-* Country A vs Country B
-* KPI Comparison
-* Radar Chart
-* Military Asset Comparison
-* Difference Summary
-
----
-
-### Coalition Builder
-
-* Multi-country Selection
-* Coalition Statistics
-* Combined Defense Budget
-* Combined Personnel
-* Coalition vs Reference Country
-* Strategic Insights
-
----
-
-### Navigation Flow
-
-Designed navigation between all dashboard pages including:
-
-* Home
-* Quick Stats
-* Nation Overview
-* Compare Powers
-* Coalition Builder
-
----
-
 ## Deliverables
 
 * Dashboard Storyboard
@@ -469,7 +426,101 @@ dashboard application prototype with link.pdf
 
 ---
 
+---
+
+# Module 5: Quick Stats & Nation Overview Dashboard Development
+
+## Objective
+
+Develop interactive Tableau dashboards that enable users to explore global military capabilities through dynamic KPIs, country profiles, filters, and analytical visualizations.
+
+---
+
+## Features
+
+### Quick Stats Dashboard
+
+- Top 10 Countries by Global Firepower Power Index
+- Dynamic KPI Cards
+- Region Filter
+- Continent Filter
+- NATO Alliance Filter
+- Interactive Dashboard Visualizations
+
+### Nation Overview Dashboard
+
+- Country Selection Filter
+- Dynamic Country Profile
+- Global Firepower Rank
+- Power Index
+- GDP
+- Defense Budget
+- Population
+- Military Assets Visualization
+- Military Manpower Visualization
+- Interactive Tooltips
+
+---
+
+## Dashboard Components
+
+### Quick Stats
+
+- Top 10 Military Powers
+- Total Countries
+- Average Power Index
+- Total Defense Budget
+- Region-wise Filtering
+- Continent-wise Filtering
+- NATO Membership Filtering
+
+### Nation Overview
+
+- Country Profile
+- Military Strength Overview
+- Economic Indicators
+- Population Statistics
+- Military Assets Analysis
+- Military Manpower Analysis
+
+---
+
+## Deliverables
+
+- Interactive Quick Stats Dashboard
+- Interactive Nation Overview Dashboard
+- Tableau Workbook
+- Tableau Public Dashboard
+
+---
+
+## Output Files
+
+```text
+global_military_firepower_2025.twbx
+```
+
+or
+
+```text
+Tableau Public Dashboard
+```
+
+---
+
+## Technologies Used
+
+- Tableau Desktop
+- Tableau Public
+- Data Visualization
+- Dashboard Design
+- Interactive Analytics
+
+---
+
 # Dataset Pipeline
+
+## Dataset Pipeline
 
 ```text
 Web Scraping
@@ -490,7 +541,10 @@ Tableau Ready Dataset
 Dashboard Planning
       │
       ▼
-Interactive Dashboard
+Dashboard Development
+      │
+      ▼
+Interactive Military Analytics
 ```
 
 ---
@@ -499,44 +553,47 @@ Interactive Dashboard
 
 ## Module 1
 
-* Web Scraper
-* Raw Military Dataset
+- Web Scraper
+- Raw Military Dataset
 
 ## Module 2
 
-* Data Cleaning Notebook
-* Clean Military Dataset
+- Data Cleaning Notebook
+- Clean Military Dataset
 
 ## Module 3
 
-* KPI Generation Script
-* Tableau-ready Dataset
-* Feature Engineered Dataset
+- KPI Generation Script
+- Tableau-ready Dataset
+- Feature Engineered Dataset
 
 ## Module 4
 
-* Dashboard Storyboard
-* Dashboard Prototype
-* Navigation Flow
+- Dashboard Storyboard
+- Dashboard Prototype
+- Navigation Flow
 
----
+## Module 5
+
+- Quick Stats Dashboard
+- Nation Overview Dashboard
+- Tableau Workbook
+- Interactive Tableau Dashboard
 
 # Future Modules
 
-* Interactive Tableau Dashboard
-* Drill-down Analytics
-* Time-series Military Trends
-* Predictive Military Intelligence
-* Machine Learning Models
-* REST API Integration
-* Web Deployment
+- Compare Powers Dashboard
+- Coalition Builder Dashboard
+- Dashboard Integration & Navigation
+- Time-series Military Trends
+- Predictive Military Intelligence
+- Machine Learning Models
+- REST API Integration
+- Web Deployment
 
 ---
 
 # Dashboard Preview
-
-## Module 4 Prototype
-
 Dashboard storyboard and prototype created during Module 4.
 
 ### Cover Page
