@@ -53,10 +53,15 @@ Module 4
 Dashboard Planning & Prototyping
         │
         ▼
-Tableau Dashboard Development
+Module 5
+Quick Stats & Nation Overview
         │
         ▼
-Military Analytics
+Module 6
+Compare Powers & Coalition Builder
+        │
+        ▼
+Interactive Military Analytics Platform
 ```
 
 ---
@@ -426,8 +431,6 @@ dashboard application prototype with link.pdf
 
 ---
 
----
-
 # Module 5: Quick Stats & Nation Overview Dashboard Development
 
 ## Objective
@@ -497,13 +500,8 @@ Develop interactive Tableau dashboards that enable users to explore global milit
 ## Output Files
 
 ```text
-global_military_firepower_2025.twbx
-```
-
-or
-
-```text
-Tableau Public Dashboard
+Quick Stats.twbx
+Nation Overview.twbx
 ```
 
 ---
@@ -518,9 +516,150 @@ Tableau Public Dashboard
 
 ---
 
-# Dataset Pipeline
+---
 
-## Dataset Pipeline
+# Module 6: Compare Powers & Coalition Builder Dashboard Development
+
+## Objective
+
+Develop advanced comparative analytics dashboards in Tableau that enable users to compare military capabilities between two nations and simulate coalition strength by aggregating the combined military resources of multiple countries.
+
+---
+
+## Features
+
+### Compare Powers Dashboard
+
+- Side-by-side comparison of two selected countries
+- Dynamic Country A and Country B selectors
+- KPI comparison cards
+- Military capability comparison
+- Economic strength comparison
+- Interactive parameter-based filtering
+- Country-wise military asset comparison
+
+### Coalition Builder Dashboard
+
+- Multi-country coalition simulation
+- Interactive country selection
+- Coalition military asset aggregation
+- Combined population analysis
+- Combined defense budget analysis
+- Combined manpower analysis
+- Coalition aircraft and naval fleet analysis
+- Reference country comparison
+- Coalition strength evaluation
+
+---
+
+## Dashboard Components
+
+### Compare Powers
+
+- Country A Selector
+- Country B Selector
+- Population Comparison
+- Global Firepower Rank Comparison
+- Power Index Comparison
+- GDP Comparison
+- Defense Budget Comparison
+- Military Manpower Comparison
+- Aircraft Comparison
+- Naval Fleet Comparison
+- Economic Strength Indicator
+
+---
+
+### Coalition Builder
+
+- Coalition Country Selector
+- Coalition Countries List
+- Coalition Population
+- Coalition Defense Budget
+- Coalition Military Manpower
+- Coalition Aircraft
+- Coalition Naval Fleet
+- Reference Country Selector
+- Coalition vs Reference Comparison
+
+---
+
+## Interactive Features
+
+### Compare Powers
+
+- Dynamic parameter-based country selection
+- Automatic KPI updates
+- Independent Country A and Country B comparison
+- Responsive dashboard interactions
+
+### Coalition Builder
+
+- Multi-country filtering
+- Automatic aggregation of coalition metrics
+- Reference country selection
+- Coalition strength comparison
+- Interactive Tableau filters
+
+---
+
+## Deliverables
+
+- Compare Powers Dashboard
+- Coalition Builder Dashboard
+- Interactive Tableau Workbook
+- Tableau Public Dashboard
+
+---
+
+## Output Files
+
+```text
+global_military_firepower_2025.twbx
+```
+
+---
+
+## Technologies Used
+
+- Tableau Desktop
+- Tableau Public
+- Interactive Dashboard Design
+- Parameter Actions
+- Dashboard Filters
+- Calculated Fields
+- Aggregate Analytics
+
+---
+
+## Key Metrics Compared
+
+### Compare Powers
+
+- Global Firepower Rank
+- Power Index
+- Population
+- GDP
+- Defense Budget
+- Military Manpower
+- Aircraft Count
+- Naval Fleet
+- Economic Strength
+
+### Coalition Builder
+
+- Coalition Population
+- Coalition Defense Budget
+- Coalition Military Manpower
+- Coalition Aircraft
+- Coalition Naval Fleet
+- Coalition Countries
+- Reference Country Metrics
+- Coalition vs Reference Analysis
+
+---
+
+# Dataset Pipeline
 
 ```text
 Web Scraping
@@ -541,10 +680,19 @@ Tableau Ready Dataset
 Dashboard Planning
       │
       ▼
-Dashboard Development
+Quick Stats Dashboard
       │
       ▼
-Interactive Military Analytics
+Nation Overview Dashboard
+      │
+      ▼
+Compare Powers Dashboard
+      │
+      ▼
+Coalition Builder Dashboard
+      │
+      ▼
+Interactive Military Analytics Platform
 ```
 
 ---
@@ -580,18 +728,15 @@ Interactive Military Analytics
 - Tableau Workbook
 - Interactive Tableau Dashboard
 
-# Future Modules
+## Module 6
 
 - Compare Powers Dashboard
 - Coalition Builder Dashboard
-- Dashboard Integration & Navigation
-- Time-series Military Trends
-- Predictive Military Intelligence
-- Machine Learning Models
-- REST API Integration
-- Web Deployment
-
----
+- Interactive Country Comparison
+- Coalition Strength Simulation
+- Reference Country Comparison
+- Tableau Workbook
+- Interactive Tableau Dashboard
 
 # Dashboard Preview
 Dashboard storyboard and prototype created during Module 4.
@@ -634,4 +779,3 @@ This project is developed for educational, research, and analytical purposes. Al
 * Pandas
 * BeautifulSoup
 * Requests
-y-Analytics
