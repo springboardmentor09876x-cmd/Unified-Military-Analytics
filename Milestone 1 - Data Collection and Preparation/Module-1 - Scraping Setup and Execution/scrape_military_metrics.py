@@ -1,284 +1,193 @@
-import os
+"""
+scrape_military_metrics.py
+---------------------------
+Week 1 deliverable for the Unified Military Analytics Dashboard project.
+
+Reads a list of GlobalFirepower.com country detail-page URLs from
+links_for_military_data.txt (one URL per line), scrapes each page,
+and writes the raw extracted metrics to military_raw_data.csv.
+
+Usage:
+    python scrape_military_metrics.py
+
+Requires:
+    pip install requests beautifulsoup4
+"""
+
 import re
-import sys
+import csv
 import time
-import io
+import logging
+from pathlib import Path
+
 import requests
-import pandas as pd
 from bs4 import BeautifulSoup
 
-headers = {"User-Agent": "Mozilla/5.0"}
+# ---------------------------------------------------------------------------
+# Config
+# ---------------------------------------------------------------------------
+INPUT_URL_FILE = "links_for_military_data.txt"
+OUTPUT_CSV = "military_raw_data.csv"
+DEBUG_HTML_DIR = Path("debug_html")   # per-country raw HTML, for troubleshooting
+REQUEST_DELAY_SECONDS = 1.5           # be polite to the server
+REQUEST_TIMEOUT = 15
+HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+        "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+    )
+}
 
-# Paste your Part2 (Continent/Region/GDP/Alliance) link here.
-# GitHub raw link  -> https://raw.githubusercontent.com/user/repo/main/Part2.csv
-# Google Drive     -> any share link works, e.g. https://drive.google.com/file/d/FILE_ID/view?usp=sharing
-LOOKUP_URL = "https://drive.google.com/file/d/1xlStXEGGaXIGkfJVgAPB5GgJs1ZYrxgA/view?usp=sharing"
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+)
+log = logging.getLogger(__name__)
 
-PART1_FILE = "Part1.csv"       # temporary checkpoint, deleted at the end
-OUTPUT_FILE = "military_raw_data.csv"
+# ---------------------------------------------------------------------------
+# Regex patterns for each metric we want to pull out of the page's plain text.
+# Each pattern is applied to the full visible text of the page (whitespace-
+# normalized), which is far more resilient to markup/class-name changes than
+# scraping by CSS selector.
+# ---------------------------------------------------------------------------
+NUM = r"([\d,]+(?:\.\d+)?)"
 
-
-def fetch_lookup_csv(url):
-    """Reads a lookup CSV from a URL. Handles both plain links (GitHub raw, etc.)
-    and Google Drive share links, including Drive's virus-scan interstitial page."""
-    drive_match = re.search(r"drive\.google\.com.*?/d/([\w-]+)|id=([\w-]+)", url)
-    if "drive.google.com" in url and drive_match:
-        file_id = drive_match.group(1) or drive_match.group(2)
-        session = requests.Session()
-        resp = session.get(
-            "https://drive.google.com/uc",
-            params={"export": "download", "id": file_id},
-            headers=headers,
-            stream=True,
-        )
-        # Large/flagged files return an HTML confirmation page instead of the file
-        token = None
-        for key, value in resp.cookies.items():
-            if key.startswith("download_warning"):
-                token = value
-        if token is None and resp.text.lstrip().startswith("<"):
-            match = re.search(r"confirm=([0-9A-Za-z_-]+)", resp.text)
-            if match:
-                token = match.group(1)
-        if token:
-            resp = session.get(
-                "https://drive.google.com/uc",
-                params={"export": "download", "id": file_id, "confirm": token},
-                headers=headers,
-                stream=True,
-            )
-        return pd.read_csv(io.StringIO(resp.content.decode("utf-8")))
-    else:
-        return pd.read_csv(url)
-
-
-# ===================================================
-# PRE-CHECK: lookup URL must be reachable before we bother scraping
-# ===================================================
-if LOOKUP_URL == "PASTE_YOUR_LINK_HERE":
-    sys.exit("ERROR: Set LOOKUP_URL at the top of the script to your Part2.csv link.")
-
-try:
-    lookup_df = fetch_lookup_csv(LOOKUP_URL)
-except Exception as e:
-    sys.exit(f"ERROR: Could not read lookup data from LOOKUP_URL.\n{e}")
-
-# ===================================================
-# STEP 1: Power Index (Country, Power Index)
-# ===================================================
-print("=" * 60)
-print("STEP 1: Scraping Power Index")
-print("=" * 60)
-
-url = "https://www.globalfirepower.com/countries-listing.php"
-page = requests.get(url, headers=headers)
-soup = BeautifulSoup(page.text, "html.parser")
-
-pi_data = {}
-for country_div in soup.find_all("div", class_="longFormName"):
-    country = country_div.get_text(strip=True)
-    row = country_div
-    value_div = None
-    for _ in range(6):
-        row = row.parent
-        if row is None:
-            break
-        value_div = row.find("div", class_="pwrIndxContainer")
-        if value_div:
-            break
-    if value_div:
-        raw = value_div.get_text(strip=True)
-        pi_data[country] = raw.replace("PwrIndx:", "").strip()
-    else:
-        print(f"Warning: no Power Index found for {country}")
-
-df = pd.DataFrame({
-    "Country": list(pi_data.keys()),
-    "Power Index": list(pi_data.values())
-})
-print("Power Index Scrape:", "Success" if df.shape == (145, 2) and not df.isnull().values.any() else "Failure")
-
-# ===================================================
-# STEP 2: All other 54 metrics
-# ===================================================
-sources = {
-    'https://www.globalfirepower.com/total-population-by-country.php': 'total_population',
-    'https://www.globalfirepower.com/available-military-manpower.php': 'total_military_manpower',
-    'https://www.globalfirepower.com/manpower-fit-for-military-service.php': 'fit_for_service',
-    'https://www.globalfirepower.com/manpower-reaching-military-age-annually.php': 'population_reaching_military_age_annually',
-    'https://www.globalfirepower.com/active-military-manpower.php': 'active_personnel',
-    'https://www.globalfirepower.com/active-reserve-military-manpower.php': 'reserve_personnel',
-    'https://www.globalfirepower.com/manpower-paramilitary.php': 'paramilitary',
-    'https://www.globalfirepower.com/aircraft-total.php': 'total_military_aircraft',
-    'https://www.globalfirepower.com/aircraft-total-fighters.php': 'fighter_aircraft',
-    'https://www.globalfirepower.com/aircraft-total-attack-types.php': 'attack_aircraft',
-    'https://www.globalfirepower.com/aircraft-total-transports.php': 'transport_aircraft',
-    'https://www.globalfirepower.com/aircraft-total-trainers.php': 'trainer_aircraft',
-    'https://www.globalfirepower.com/aircraft-total-special-mission.php': 'special_mission_aircraft',
-    'https://www.globalfirepower.com/aircraft-total-tanker-fleet.php': 'tanker_aircraft',
-    'https://www.globalfirepower.com/aircraft-helicopters-total.php': 'total_military_helicopters',
-    'https://www.globalfirepower.com/aircraft-helicopters-attack.php': 'attack_helicopters',
-    'https://www.globalfirepower.com/armor-tanks-total.php': 'tanks',
-    'https://www.globalfirepower.com/armor-apc-total.php': 'armored_fighting_vehicles',
-    'https://www.globalfirepower.com/armor-self-propelled-guns-total.php': 'self_propelled_artillery',
-    'https://www.globalfirepower.com/armor-towed-artillery-total.php': 'towed_artillery',
-    'https://www.globalfirepower.com/armor-mlrs-total.php': 'rocket_projectors',
-    'https://www.globalfirepower.com/navy-ships.php': 'total_naval_fleet',
-    'https://www.globalfirepower.com/navy-force-by-tonnage.php': 'total_naval_fleet_tonnage_mt',
-    'https://www.globalfirepower.com/navy-aircraft-carriers.php': 'aircraft_carriers',
-    'https://www.globalfirepower.com/navy-helo-carriers.php': 'helicopter_carriers',
-    'https://www.globalfirepower.com/navy-submarines.php': 'submarines',
-    'https://www.globalfirepower.com/navy-destroyers.php': 'destroyers',
-    'https://www.globalfirepower.com/navy-frigates.php': 'frigates',
-    'https://www.globalfirepower.com/navy-corvettes.php': 'corvettes',
-    'https://www.globalfirepower.com/navy-patrol-coastal-craft.php': 'coastal_patrol_craft',
-    'https://www.globalfirepower.com/navy-mine-warfare-craft.php': 'mine_warfare_craft',
-    'https://www.globalfirepower.com/defense-spending-budget.php': 'defense_budget_usd',
-    'https://www.globalfirepower.com/external-debt-by-country.php': 'external_debt_usd',
-    'https://www.globalfirepower.com/purchasing-power-parity.php': 'purchasing_power_parity_usd',
-    'https://www.globalfirepower.com/reserves-of-foreign-exchange-and-gold.php': 'foreign_exchange_and_gold_reserves_usd',
-    'https://www.globalfirepower.com/major-serviceable-airports-by-country.php': 'total_serviceable_airports',
-    'https://www.globalfirepower.com/labor-force-by-country.php': 'labour_force',
-    'https://www.globalfirepower.com/major-ports-and-terminals.php': 'major_ports_and_terminals',
-    'https://www.globalfirepower.com/merchant-marine-strength-by-country.php': 'total_merchant_marine_fleet',
-    'https://www.globalfirepower.com/railway-coverage.php': 'railway_coverage_km',
-    'https://www.globalfirepower.com/roadway-coverage.php': 'roadway_coverage_km',
-    'https://www.globalfirepower.com/oil-production-by-country.php': 'oil_production_bbl',
-    'https://www.globalfirepower.com/oil-consumption-by-country.php': 'oil_consumption_bbl',
-    'https://www.globalfirepower.com/proven-oil-reserves-by-country.php': 'proven_oil_reserves_bbl',
-    'https://www.globalfirepower.com/natural-gas-production-by-country.php': 'natural_gas_production_cum',
-    'https://www.globalfirepower.com/natural-gas-consumption-by-country.php': 'natural_gas_consumption_cum',
-    'https://www.globalfirepower.com/proven-natural-gas-reserves-by-country.php': 'proven_natural_gas_reserves_cum',
-    'https://www.globalfirepower.com/coal-production-by-country.php': 'coal_production_cum',
-    'https://www.globalfirepower.com/coal-consumption-by-country.php': 'coal_consumption_mt',
-    'https://www.globalfirepower.com/proven-coal-reserves-by-country.php': 'proven_coal_reserves_cum',
-    'https://www.globalfirepower.com/square-land-area.php': 'total_land_area_sq_km',
-    'https://www.globalfirepower.com/coastline-coverage.php': 'coastline_coverage_km',
-    'https://www.globalfirepower.com/border-coverage.php': 'border_coverage_km',
-    'https://www.globalfirepower.com/waterway-coverage.php': 'waterway_coverage_km'
+PATTERNS = {
+    "power_index_rank": re.compile(r"ranked\s+(\d+)\s+of\s+(\d+)", re.I),
+    "power_index_score": re.compile(r"PwrIndx\*?\s+score\s+of\s+([\d.]+)", re.I),
+    "total_population": re.compile(r"Total Population:?\s*" + NUM, re.I),
+    "active_personnel": re.compile(r"Active Personnel\s*" + NUM, re.I),
+    "reserve_personnel": re.compile(r"Reserve Personnel\s*" + NUM, re.I),
+    "total_aircraft": re.compile(r"Aircraft Total:\s*Stock:\s*" + NUM, re.I),
+    "total_tanks": re.compile(r"Tanks:\s*Stock:\s*" + NUM, re.I),
+    "total_navy_assets": re.compile(r"Total Assets:\s*" + NUM, re.I),
+    "defense_budget_usd": re.compile(r"Defense Budget:\s*\$" + NUM, re.I),
+    "purchasing_power_parity_usd": re.compile(r"Purchasing Power Parity:\s*\$" + NUM, re.I),
+    "square_land_area_km": re.compile(r"Square Land Area:\s*" + NUM, re.I),
 }
 
 
-def scrape_page(url):
-    page = requests.get(url, headers=headers)
-    if page.status_code != 200:
-        print(f"Failed : {url}")
+def load_urls(path: str) -> list[str]:
+    """Read and validate the URL list. Skips blanks and comment lines."""
+    urls = []
+    with open(path, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#"):
+                continue
+            urls.append(line)
+    log.info("Loaded %d URLs from %s", len(urls), path)
+    return urls
+
+
+def country_id_from_url(url: str) -> str:
+    match = re.search(r"country_id=([\w-]+)", url)
+    return match.group(1) if match else url
+
+
+def fetch_page(url: str) -> str | None:
+    try:
+        resp = requests.get(url, headers=HEADERS, timeout=REQUEST_TIMEOUT)
+        resp.raise_for_status()
+        return resp.text
+    except requests.RequestException as e:
+        log.warning("Request failed for %s: %s", url, e)
         return None
-    soup = BeautifulSoup(page.text, "html.parser")
-    data = {}
-    for country_div in soup.find_all("div", class_="longFormName"):
-        country = country_div.get_text(strip=True)
-        row = country_div
-        value_div = None
-        for _ in range(6):
-            row = row.parent
-            if row is None:
-                break
-            value_div = row.find("div", class_="valueContainer")
-            if value_div:
-                break
-        if value_div:
-            data[country] = value_div.get_text(strip=True)
-        else:
-            print(f"Warning: no value found for {country} on {url}")
-    if len(data) == 0:
-        print(f"No data extracted : {url}")
-        return None
-    return data
 
 
-print("\n" + "=" * 60)
-print("STEP 2: Scraping remaining 54 metrics")
-print("=" * 60)
+def extract_metrics(html: str) -> dict:
+    """Pull every metric in PATTERNS out of the page's visible text."""
+    soup = BeautifulSoup(html, "html.parser")
 
-master = None
-for i, (src_url, column_name) in enumerate(sources.items(), start=1):
-    print(f"[{i}/{len(sources)}] Scraping {column_name}")
-    data = scrape_page(src_url)
-    if data is None:
-        continue
-    if master is None:
-        master = pd.DataFrame({"Country": list(data.keys())})
-    master[column_name] = master["Country"].map(data)
-    time.sleep(1)
+    # Collapse all visible text into one whitespace-normalized string.
+    text = soup.get_text(separator=" ")
+    text = re.sub(r"\s+", " ", text)
 
-# ===================================================
-# STEP 3: Merge Power Index into Master, save Part1.csv
-# ===================================================
-master = df.merge(master, on="Country", how="left")
-master.to_csv(PART1_FILE, index=False)
+    row = {}
 
-print("\n" + "=" * 60)
-print("STEP 1+2 COMPLETE — Part1.csv saved")
-print("=" * 60)
-print("Shape:", master.shape)
-print(master.head())
-print("\nRows with any missing values:\n", master[master.isnull().any(axis=1)][["Country"]])
+    rank_match = PATTERNS["power_index_rank"].search(text)
+    if rank_match:
+        row["power_index_rank"] = rank_match.group(1)
+        row["countries_considered"] = rank_match.group(2)
+    else:
+        row["power_index_rank"] = ""
+        row["countries_considered"] = ""
 
-# ===================================================
-# STEP 4: Merge Part1.csv with Part2.csv lookup -> military_raw_data.csv
-# ===================================================
-print("\n" + "=" * 60)
-print("STEP 3: Merging with lookup file")
-print("=" * 60)
+    for key, pattern in PATTERNS.items():
+        if key == "power_index_rank":
+            continue
+        match = pattern.search(text)
+        row[key] = match.group(1) if match else ""
 
-master_df = master.copy()
-# lookup_df was already fetched from LOOKUP_URL at the top of the script
+    return row
 
-columns_to_add = ["Continent", "Region", "GDP", "Alliance"]
 
-if "Country" not in lookup_df.columns:
-    raise ValueError(f"The column 'Country' was not found in {LOOKUP_FILE}")
+def scrape_all(urls: list[str]) -> list[dict]:
+    DEBUG_HTML_DIR.mkdir(exist_ok=True)
+    results = []
+    success_count = 0
 
-missing_columns = [col for col in columns_to_add if col not in lookup_df.columns]
-if missing_columns:
-    raise ValueError(f"These required columns are missing from the lookup CSV: {missing_columns}")
+    for i, url in enumerate(urls, start=1):
+        country_id = country_id_from_url(url)
+        log.info("[%d/%d] Fetching %s", i, len(urls), country_id)
 
-master_df["_country_match_key"] = master_df["Country"].astype(str).str.strip().str.casefold()
-lookup_df["_country_match_key"] = lookup_df["Country"].astype(str).str.strip().str.casefold()
+        html = fetch_page(url)
+        if html is None:
+            results.append({"country_id": country_id, "source_url": url, "scrape_status": "FAILED"})
+            time.sleep(REQUEST_DELAY_SECONDS)
+            continue
 
-duplicate_countries = lookup_df[lookup_df["_country_match_key"].duplicated(keep=False)]["Country"].unique()
-if len(duplicate_countries) > 0:
-    raise ValueError(
-        "Duplicate countries found in lookup file after ignoring case differences "
-        f"and extra spaces. Duplicate countries: {list(duplicate_countries)}"
-    )
+        # Save raw HTML for debugging per the project's Module 1 spec.
+        (DEBUG_HTML_DIR / f"{country_id}.html").write_text(html, encoding="utf-8")
 
-lookup_subset = lookup_df[["_country_match_key"] + columns_to_add].copy()
+        metrics = extract_metrics(html)
+        metrics["country_id"] = country_id
+        metrics["source_url"] = url
+        metrics["scrape_status"] = "OK"
+        results.append(metrics)
+        success_count += 1
 
-result_df = master_df.merge(
-    lookup_subset,
-    on="_country_match_key",
-    how="left",
-    sort=False,
-    validate="many_to_one"
-)
-result_df.drop(columns=["_country_match_key"], inplace=True)
-result_df.to_csv(OUTPUT_FILE, index=False, na_rep="")
+        time.sleep(REQUEST_DELAY_SECONDS)
 
-matched_count = master_df["_country_match_key"].isin(set(lookup_df["_country_match_key"])).sum()
-unmatched_count = len(master_df) - matched_count
+    success_rate = (success_count / len(urls)) * 100 if urls else 0
+    log.info("Done. %d/%d succeeded (%.1f%%)", success_count, len(urls), success_rate)
+    if success_rate < 95:
+        log.warning("Success rate is below the 95%% target set in the project spec.")
 
-print("=" * 60)
-print("PIPELINE COMPLETED SUCCESSFULLY")
-print("=" * 60)
-print(f"\nOriginal rows          : {len(master_df)}")
-print(f"Final rows             : {len(result_df)}")
-print(f"Original columns       : {len(master_df.columns) - 1}")
-print(f"Final columns          : {len(result_df.columns)}")
-print(f"\nCountries matched      : {matched_count}")
-print(f"Countries not matched  : {unmatched_count}")
-print("\nColumns added:")
-for column in columns_to_add:
-    print(f"  - {column}")
-print(f"\nOutput saved as: {OUTPUT_FILE}")
-print("=" * 60)
+    return results
 
-# ===================================================
-# CLEANUP: only the script + final CSV should remain
-# ===================================================
-if os.path.exists(PART1_FILE):
-    os.remove(PART1_FILE)
-    print(f"\nCleanup: deleted temporary checkpoint '{PART1_FILE}'")
 
-print("\nPipeline by Yaswanth — Done.")
+def write_csv(rows: list[dict], path: str) -> None:
+    if not rows:
+        log.warning("No rows to write.")
+        return
+
+    # Union of all keys across rows, with a sensible, stable column order.
+    preferred_order = [
+        "country_id", "power_index_rank", "countries_considered",
+        "power_index_score", "total_population", "active_personnel",
+        "reserve_personnel", "total_aircraft", "total_tanks",
+        "total_navy_assets", "defense_budget_usd",
+        "purchasing_power_parity_usd", "square_land_area_km",
+        "scrape_status", "source_url",
+    ]
+    all_keys = set().union(*(r.keys() for r in rows))
+    fieldnames = [k for k in preferred_order if k in all_keys]
+    fieldnames += [k for k in all_keys if k not in fieldnames]
+
+    with open(path, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(rows)
+
+    log.info("Wrote %d rows to %s", len(rows), path)
+
+
+def main():
+    urls = load_urls(INPUT_URL_FILE)
+    rows = scrape_all(urls)
+    write_csv(rows, OUTPUT_CSV)
+
+
+if __name__ == "__main__":
+    main()
