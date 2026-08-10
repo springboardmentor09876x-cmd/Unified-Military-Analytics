@@ -4,7 +4,7 @@
 
 **Repository URL:** https://github.com/springboardmentor09876x-cmd/Unified-Military-Analytics/tree/Tamilselvi0512
 
-**Published Dashboard (Tableau Public, optional):** [Paste Tableau Public link here, if published]
+**Published Dashboard (optional):** [Paste Tableau Public link here, if published]
 
 ---
 
