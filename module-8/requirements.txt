@@ -1,0 +1,8 @@
+# Unified Military Analytics and Comparison Dashboard
+# Python dependencies for data scraping, cleaning, and KPI engineering
+
+requests
+beautifulsoup4
+pandas
+numpy
+openpyxl
