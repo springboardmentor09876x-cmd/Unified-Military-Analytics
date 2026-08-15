@@ -602,17 +602,6 @@ Additional milestone deliverables include the cleaned/processed data, KPI work, 
 
 ---
 
-# Limitations
-
-- The analysis is based on the Global Military Firepower 2025 dataset.
-- Military capabilities can change over time.
-- The dashboard represents the available dataset and is not a real-time military intelligence system.
-- Different military metrics have different units and scales.
-- Coalition results represent aggregated values for analytical comparison.
-- Military strength should not be interpreted using a single metric alone.
-
----
-
 # Conclusion
 
 The **Unified Military Analytics and Comparison Dashboard** provides an interactive platform for analyzing global military capabilities.
