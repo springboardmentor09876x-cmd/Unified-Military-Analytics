@@ -1,1 +1,637 @@
-# Unified-Military-Analytics
+# Unified Military Analytics and Comparison Dashboard
+
+## Project Overview
+
+**Unified Military Analytics and Comparison Dashboard** is a data analytics and visualization project focused on analyzing global military capabilities for 2025.
+
+The project follows a complete workflow from data collection and preparation to KPI engineering, dashboard development, testing, and final documentation.
+
+The final Power BI dashboard suite contains four interactive dashboards:
+
+1. **Quick Stats**
+2. **Nation Overview**
+3. **Compare Powers**
+4. **Coalition Builder**
+
+The dashboards allow users to explore global military statistics, analyze an individual country's profile, compare two countries, and evaluate a hypothetical coalition against a reference country.
+
+---
+
+# Project Objectives
+
+The main objectives of the project are:
+
+- Collect country-level military information for the required countries.
+- Prepare and clean the collected military dataset.
+- Create meaningful derived KPIs for military analysis.
+- Build interactive dashboards for different levels of military analysis.
+- Provide filtering and selection capabilities.
+- Compare military capabilities between countries.
+- Build a multi-country coalition and compare it with a reference country.
+- Test the dashboards for functionality, accuracy, usability, and navigation.
+- Provide complete project documentation and a GitHub-ready deliverable.
+
+---
+
+# Project Workflow
+
+```text
+Data Collection
+       ↓
+Data Cleaning & Preparation
+       ↓
+KPI / Feature Engineering
+       ↓
+Dashboard Planning & Prototyping
+       ↓
+Quick Stats + Nation Overview
+       ↓
+Compare Powers + Coalition Builder
+       ↓
+Testing & QA
+       ↓
+Documentation & GitHub Release
+```
+
+---
+
+# Module 1: Data Collection and Web Scraping
+
+## Objective
+
+The first module focuses on collecting country-level military information from the Global Firepower source.
+
+The objective is to create a raw dataset containing the military metrics required for further processing and dashboard development.
+
+## Data Source
+
+The project uses military information from **Global Firepower 2025**.
+
+The country URLs used for data collection are maintained in the project URL list.
+
+## Scraping Method
+
+The data collection process uses Python-based web scraping.
+
+The scraping workflow is:
+
+1. Read the predefined country URLs.
+2. Send requests to the required Global Firepower pages.
+3. Retrieve the HTML content of the pages.
+4. Parse the HTML using BeautifulSoup.
+5. Extract the required country-level military metrics.
+6. Organize the extracted values into a structured dataset.
+7. Save the collected information as the raw military dataset.
+
+## Technologies Used
+
+- Python
+- Requests
+- BeautifulSoup
+- Pandas
+
+## Main Output
+
+The raw collected dataset is stored as:
+
+```text
+military_raw_data.csv
+```
+
+This raw dataset is used as the input for the cleaning and preparation stage.
+
+---
+
+# Module 2: Data Cleaning and Structuring
+
+## Objective
+
+The second module converts the raw scraped data into a clean and consistent dataset that can be used for analysis and visualization.
+
+## Cleaning Process
+
+The data preparation process includes:
+
+### Column Standardization
+
+- Standardizing column names.
+- Removing unnecessary spaces.
+- Maintaining consistent naming conventions.
+
+### Numeric Data Cleaning
+
+- Removing commas from numerical values.
+- Removing currency symbols where required.
+- Removing percentage symbols.
+- Removing unnecessary units and special characters.
+- Converting values into appropriate numeric data types.
+
+### Missing and Invalid Values
+
+- Identifying missing values.
+- Handling invalid numeric values.
+- Checking duplicate records.
+- Validating the consistency of country-level records.
+
+### Dataset Preparation
+
+After cleaning, the dataset is structured so that each country can be analyzed consistently across military, economic, demographic, and geographical metrics.
+
+---
+
+# Module 3: KPI Feature Engineering
+
+## Objective
+
+The third module focuses on creating derived metrics that provide additional analytical insight beyond the original dataset values.
+
+The project includes the following important engineered KPIs.
+
+## 3.1 Power Index Rank Gap
+
+The **Power Index Rank Gap** represents the difference between the relevant ranking values used for the analysis.
+
+It helps users understand the relative gap between the selected country's military ranking and its comparison/reference ranking.
+
+The dashboard uses this KPI in the **Nation Overview** analysis.
+
+## 3.2 Assets per Capita
+
+**Assets per Capita** measures military assets relative to population.
+
+The general calculation is:
+
+```text
+Assets per Capita = Total Military Assets / Population
+```
+
+This provides a population-normalized view of military assets.
+
+## 3.3 Budget-to-GDP Ratio
+
+**Budget-to-GDP Ratio** measures defense expenditure relative to the size of the country's economy.
+
+The calculation is:
+
+```text
+Budget-to-GDP Ratio = (Defense Budget / GDP) × 100
+```
+
+This KPI provides an indication of defense spending intensity relative to GDP.
+
+## Purpose of Feature Engineering
+
+The engineered KPIs make the dataset more useful for:
+
+- Country ranking analysis.
+- Military capability comparisons.
+- Economic comparison.
+- Population-normalized analysis.
+- Dashboard visualization.
+
+---
+
+# Module 4: Dashboard Planning and Prototyping
+
+## Objective
+
+The fourth module focuses on planning the dashboard structure before final implementation.
+
+The planning stage defines:
+
+- Dashboard layout.
+- Navigation flow.
+- KPI placement.
+- Filter requirements.
+- Country selection requirements.
+- Comparison requirements.
+- Coalition analysis requirements.
+- Overall user interaction.
+
+## Dashboard Plan
+
+The final dashboard suite is divided into four analytical areas:
+
+### Quick Stats
+
+Provides a global overview of military capabilities.
+
+### Nation Overview
+
+Provides a detailed profile of a selected country.
+
+### Compare Powers
+
+Provides a side-by-side comparison between two countries.
+
+### Coalition Builder
+
+Provides multi-country coalition analysis against a reference country.
+
+---
+
+# Module 5: Quick Stats and Nation Overview Dashboards
+
+## Objective
+
+Module 5 focuses on building the first two interactive Power BI dashboards:
+
+- Quick Stats
+- Nation Overview
+
+---
+
+## 5.1 Quick Stats Dashboard
+
+The **Quick Stats** dashboard provides a high-level view of global military power.
+
+### KPI Cards
+
+The dashboard contains KPI cards for important overall statistics, including:
+
+- Total Military Assets
+- Total Defense Budget
+- Average Superiority Index
+- Total Countries
+
+### Top 10 Analysis
+
+The dashboard provides Top 10 visualizations for:
+
+- Countries by Superiority / Power Index.
+- Countries by Defense Budget.
+
+### Filters
+
+The dashboard provides interactive filters for:
+
+- Region
+- Continent
+- Alliance
+
+### Other Visualizations
+
+The dashboard also includes:
+
+- Global military map.
+- Alliance distribution.
+- Interactive chart selections.
+- Dashboard navigation controls.
+
+### Purpose
+
+Quick Stats is designed for fast exploration of global military strength and identification of leading countries by military power and defense spending.
+
+---
+
+## 5.2 Nation Overview Dashboard
+
+The **Nation Overview** dashboard provides a detailed analysis of a selected country.
+
+### Country Selection
+
+Users can select a country and view its corresponding military profile.
+
+### KPI Information
+
+The dashboard displays important country-level indicators such as:
+
+- Defense Budget
+- Population
+- Active Personnel
+- Total Military Assets
+- Superiority / Power Index
+- Military Strength Index
+
+### Analytical Visuals
+
+The dashboard includes visualizations for:
+
+- Military strength.
+- Defense budget comparison.
+- Power Index Rank Gap.
+- Country-level military metrics.
+
+### Country Profile
+
+A country profile section provides detailed information for the selected nation.
+
+### Purpose
+
+Nation Overview allows users to move from a global view to detailed country-level analysis.
+
+---
+
+# Module 6: Compare Powers and Coalition Builder
+
+## Objective
+
+Module 6 focuses on advanced comparison and coalition analysis.
+
+The module contains:
+
+1. Compare Powers
+2. Coalition Builder
+
+---
+
+## 6.1 Compare Powers Dashboard
+
+The **Compare Powers** dashboard allows users to compare two countries side-by-side.
+
+### Country Selection
+
+Users select:
+
+- Country A
+- Country B
+
+The comparison updates based on the selected countries.
+
+### Metrics Compared
+
+The dashboard compares major military indicators including:
+
+- Manpower
+- Aircraft
+- Navy
+- Defense Budget
+- Superiority / Power Index
+- Other relevant KPIs
+
+### Comparison Table
+
+A comparison table provides detailed values for the selected countries.
+
+### Purpose
+
+The dashboard makes it easier to understand the relative military capabilities of two selected countries.
+
+---
+
+## 6.2 Coalition Builder Dashboard
+
+The **Coalition Builder** dashboard allows users to select multiple countries and analyze their combined military capabilities.
+
+### Coalition Selection
+
+Users can select multiple countries to form a hypothetical coalition.
+
+### Coalition Metrics
+
+The dashboard calculates and displays aggregated values such as:
+
+- Coalition Defense Budget
+- Coalition Manpower
+- Coalition Aircraft
+- Coalition Navy
+
+### Reference Country
+
+A reference country can be selected to provide a comparison point.
+
+The dashboard displays the relevant reference metric and compares it against the coalition.
+
+### Purpose
+
+Coalition Builder demonstrates how combined country-level military metrics can be analyzed as a hypothetical group.
+
+---
+
+# Module 7: Testing and Debugging
+
+## Objective
+
+Module 7 focuses on validating the functionality, accuracy, and usability of the completed dashboards.
+
+A structured QA process was performed across the four dashboards.
+
+## Functional Testing
+
+The following areas were checked:
+
+- Dashboard navigation.
+- Region filters.
+- Continent filters.
+- Alliance filters.
+- Country selection.
+- Country A and Country B selection.
+- Coalition country selection.
+- Reference country selection.
+- KPI updates.
+- Chart updates.
+
+## Visual Testing
+
+The dashboards were checked for:
+
+- Visual loading errors.
+- Missing visuals.
+- Incorrect labels.
+- Incorrect titles.
+- Tooltip behavior.
+- Number formatting.
+- Layout alignment.
+- Readability.
+- Overlapping objects.
+- Unexpected blank areas.
+
+## Data Validation
+
+Manual spot checks were performed to verify that displayed values behaved correctly with the underlying dataset and filters.
+
+The dashboard values were reviewed during the QA process.
+
+## QA Result
+
+The completed dashboard passed the functional and visual QA checks performed during the final review.
+
+---
+
+# Module 8: Documentation and GitHub Release
+
+## Objective
+
+The final module focuses on preparing the project for submission and sharing through GitHub.
+
+## Documentation
+
+The project documentation covers:
+
+- Project overview.
+- Data collection method.
+- Data preparation.
+- KPI definitions.
+- Dashboard functionality.
+- Dashboard usage instructions.
+- Testing and QA.
+
+## README
+
+This README provides a module-wise explanation of the complete project workflow from data collection to final dashboard delivery.
+
+## QA Checklist
+
+The QA checklist records the testing performed on the dashboards and confirms the functionality of filters, navigation, visuals, KPIs, and other dashboard components.
+
+## GitHub Release
+
+The final project files are maintained in the GitHub repository along with:
+
+- Source/data files.
+- Dashboard file.
+- Documentation.
+- README.
+
+The repository provides a central location for accessing the final project deliverables.
+
+---
+
+# Dashboard Usage Guide
+
+## Quick Stats
+
+1. Open the Quick Stats dashboard.
+2. Use the Region, Continent, or Alliance filters.
+3. Observe the KPI cards and visualizations update.
+4. Explore the Top 10 Power Index visualization.
+5. Explore the Top 10 Defense Budget visualization.
+6. Use the map and alliance distribution for additional analysis.
+
+## Nation Overview
+
+1. Open the Nation Overview dashboard.
+2. Select a country.
+3. Review the KPI cards.
+4. Examine the military strength and defense budget visuals.
+5. Review the Power Index Rank Gap.
+6. Review the country profile information.
+
+## Compare Powers
+
+1. Open the Compare Powers dashboard.
+2. Select Country A.
+3. Select Country B.
+4. Review the side-by-side military comparison.
+5. Compare manpower, aircraft, navy, budget, and relevant KPIs.
+
+## Coalition Builder
+
+1. Open the Coalition Builder dashboard.
+2. Select multiple countries.
+3. Review the aggregated coalition metrics.
+4. Select a reference country.
+5. Compare the coalition against the reference country.
+
+---
+
+# How to Open the Power BI Dashboard
+
+## Requirement
+
+Install **Microsoft Power BI Desktop**.
+
+## Steps
+
+1. Download or clone the GitHub repository.
+2. Locate the final Power BI `.pbix` file.
+3. Open the `.pbix` file using Power BI Desktop.
+4. Wait for the report to load.
+5. Use the navigation buttons to move between dashboards.
+
+---
+
+# Final Dashboard Suite
+
+The final project contains four dashboards:
+
+| Dashboard | Main Purpose |
+|---|---|
+| Quick Stats | Global military overview |
+| Nation Overview | Individual country analysis |
+| Compare Powers | Two-country comparison |
+| Coalition Builder | Multi-country coalition analysis |
+
+---
+
+# Project Files
+
+Important project files include:
+
+```text
+military_raw_data.csv
+scrape_military_metrics.py
+```
+
+Additional milestone deliverables include the cleaned/processed data, KPI work, Power BI dashboard, documentation, and QA checklist.
+
+---
+
+# Tools and Technologies
+
+### Data Collection
+
+- Python
+- Requests
+- BeautifulSoup
+- Pandas
+
+### Data Processing
+
+- Python
+- Pandas
+- NumPy
+
+### Dashboard Development
+
+- Microsoft Power BI
+- Power Query
+- DAX
+
+### Documentation and Version Control
+
+- Markdown
+- Git
+- GitHub
+
+---
+
+# Limitations
+
+- The analysis is based on the Global Military Firepower 2025 dataset.
+- Military capabilities can change over time.
+- The dashboard represents the available dataset and is not a real-time military intelligence system.
+- Different military metrics have different units and scales.
+- Coalition results represent aggregated values for analytical comparison.
+- Military strength should not be interpreted using a single metric alone.
+
+---
+
+# Conclusion
+
+The **Unified Military Analytics and Comparison Dashboard** provides an interactive platform for analyzing global military capabilities.
+
+The project follows a complete analytics workflow:
+
+**Data Collection → Data Cleaning → KPI Engineering → Dashboard Planning → Dashboard Development → Testing → Documentation**
+
+The four Power BI dashboards provide complementary levels of analysis:
+
+- **Quick Stats** for global military overview.
+- **Nation Overview** for detailed country analysis.
+- **Compare Powers** for two-country comparison.
+- **Coalition Builder** for multi-country coalition analysis.
+
+The project demonstrates the application of web scraping, data preparation, feature engineering, interactive visualization, dashboard design, testing, and documentation to create a complete military analytics solution.
+
+---
+
+# Author
+
+**Sandhya S**
+
+**Project:** Unified Military Analytics and Comparison Dashboard
+
+**Data Year:** 2025
+
+**Dashboard Platform:** Microsoft Power BI
