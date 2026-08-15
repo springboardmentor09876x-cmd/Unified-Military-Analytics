@@ -25,43 +25,40 @@ The project follows a modular data engineering and analytics pipeline consisting
 # Project Architecture
 
 ```text
-Global Firepower
-        │
-        ▼
-Module 1
-Data Collection & Web Scraping
-        │
-        ▼
-Raw Military Dataset
-        │
-        ▼
-Module 2
-Data Cleaning & Structuring
-        │
-        ▼
-Clean Military Dataset
-        │
-        ▼
-Module 3
-KPI Feature Engineering
-        │
-        ▼
-Tableau Ready Dataset
-        │
-        ▼
-Module 4
-Dashboard Planning & Prototyping
-        │
-        ▼
-Module 5
-Quick Stats & Nation Overview
-        │
-        ▼
-Module 6
-Compare Powers & Coalition Builder
-        │
-        ▼
-Interactive Military Analytics Platform
+                    Global Firepower
+                           │
+                           ▼
+        Module 1: Data Collection & Web Scraping
+                           │
+                           ▼
+                  Raw Military Dataset
+                           │
+                           ▼
+        Module 2: Data Cleaning & Structuring
+                           │
+                           ▼
+                 Clean Military Dataset
+                           │
+                           ▼
+      Module 3: KPI Feature Engineering
+                           │
+                           ▼
+             Tableau-Ready Analytical Dataset
+                           │
+                           ▼
+      Module 4: Dashboard Planning & Prototyping
+                           │
+                           ▼
+     Module 5: Quick Stats & Nation Overview
+                           │
+                           ▼
+    Module 6: Compare Powers & Coalition Builder
+                           │
+                           ▼
+         Module 7: Testing & Debugging (QA)
+                           │
+                           ▼
+         Interactive Military Analytics Platform
 ```
 
 ---
@@ -82,11 +79,17 @@ Unified-Military-Analytics/
 │
 ├── Storyboard for dashboard layouts.pdf
 ├── dashboard application prototype with link.pdf
+│
 ├── Quick Stats.twbx
 ├── Nation Overview.twbx
+├── Compare Powers.twbx
+├── Coalition Builder.twbx
+├── global_military_firepower_2025.twbx
 │
+├── QA_Checklist.md
 ├── README.md
-└── requirements.txt
+├── requirements.txt
+└── LICENSE
 ```
 
 ---
@@ -516,8 +519,6 @@ Nation Overview.twbx
 
 ---
 
----
-
 # Module 6: Compare Powers & Coalition Builder Dashboard Development
 
 ## Objective
@@ -659,13 +660,150 @@ global_military_firepower_2025.twbx
 
 ---
 
+# Module 7: Testing & Debugging
+
+## Objective
+
+Perform comprehensive quality assurance testing on all Tableau dashboards to ensure data accuracy, interactive functionality, navigation, and overall dashboard usability before final deployment.
+
+---
+
+## Features
+
+- End-to-end dashboard testing
+- Filter validation
+- Parameter validation
+- Navigation testing
+- KPI verification
+- Manual data validation
+- Layout optimization
+- Tooltip verification
+- Performance testing
+- Tableau Public/Desktop compatibility testing
+
+---
+
+## Testing Performed
+
+### Dashboard Validation
+
+#### Quick Stats
+
+- Verified Region filter
+- Verified Continent filter
+- Verified NATO filter
+- Validated KPI cards
+- Verified Top 10 Countries visualization
+- Verified Defense Budget chart
+- Verified Assets per Capita chart
+
+---
+
+#### Nation Overview
+
+- Verified Country selector
+- Validated country profile information
+- Verified GDP values
+- Verified Defense Budget values
+- Verified Population statistics
+- Verified Military Assets visualization
+- Verified Personnel visualization
+
+---
+
+#### Compare Powers
+
+- Verified Country A parameter
+- Verified Country B parameter
+- Validated comparative KPIs
+- Verified side-by-side comparison
+- Tested interactive parameter updates
+
+---
+
+#### Coalition Builder
+
+- Verified multi-country coalition selection
+- Verified coalition aggregation
+- Validated reference country selection
+- Tested coalition vs reference comparison
+- Verified aggregated coalition metrics
+
+---
+
+## Quality Assurance
+
+### Functional Testing
+
+- Dashboard filters validated
+- Parameters validated
+- Navigation validated
+- Interactive actions verified
+
+---
+
+### Data Validation
+
+- Manual spot checks performed
+- KPI calculations verified
+- Aggregated values validated
+- Source dataset cross-checked
+
+---
+
+### UI/UX Validation
+
+- Dashboard layouts aligned
+- Labels verified
+- Tooltips validated
+- Consistent styling maintained
+- Responsive dashboard behavior confirmed
+
+---
+
+### Performance Testing
+
+- Workbook tested in Tableau Desktop
+- Workbook tested in Tableau Public
+- Dashboard loading verified
+- Interactive performance validated
+
+---
+
+## Deliverables
+
+- Debugged Tableau Workbook
+- QA Checklist
+- Verified Interactive Dashboards
+
+---
+
+## Output Files
+
+```text
+global_military_firepower_2025.twbx
+QA_Checklist.md
+```
+
+---
+
+## Technologies Used
+
+- Tableau Desktop
+- Tableau Public
+- Dashboard Testing
+- Manual QA
+- Data Validation
+
+---
+
 # Dataset Pipeline
 
 ```text
 Web Scraping
       │
       ▼
-Raw Dataset
+Raw Military Dataset
       │
       ▼
 Data Cleaning
@@ -674,7 +812,7 @@ Data Cleaning
 Feature Engineering
       │
       ▼
-Tableau Ready Dataset
+Tableau-Ready Dataset
       │
       ▼
 Dashboard Planning
@@ -690,6 +828,9 @@ Compare Powers Dashboard
       │
       ▼
 Coalition Builder Dashboard
+      │
+      ▼
+Testing & Debugging
       │
       ▼
 Interactive Military Analytics Platform
@@ -725,8 +866,6 @@ Interactive Military Analytics Platform
 
 - Quick Stats Dashboard
 - Nation Overview Dashboard
-- Tableau Workbook
-- Interactive Tableau Dashboard
 
 ## Module 6
 
@@ -735,8 +874,25 @@ Interactive Military Analytics Platform
 - Interactive Country Comparison
 - Coalition Strength Simulation
 - Reference Country Comparison
-- Tableau Workbook
-- Interactive Tableau Dashboard
+
+## Module 7
+
+- Debugged Tableau Workbook
+- QA Checklist
+- Verified Interactive Dashboards
+
+--- 
+
+# Future Enhancements
+
+- Real-time military data integration
+- Time-series military trend analysis
+- Machine Learning based military capability prediction
+- REST API integration
+- Web deployment using Tableau Embedded Analytics
+- Automated data refresh pipeline
+
+---
 
 # Dashboard Preview
 Dashboard storyboard and prototype created during Module 4.
