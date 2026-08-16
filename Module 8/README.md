@@ -1,10 +1,16 @@
-# Unified Military Analytics
+# Module 8: Documentation and GitHub Release
 
-## Project Overview
+## Unified Military Analytics
+
+Module 8 is the final documentation and GitHub release stage of the Unified Military Analytics project. This module organizes the completed project files, documents the data collection and KPI methodology, explains how to use the Tableau dashboards, and prepares the final project for sharing and portfolio use.
+
+---
+
+## 1. Project Overview
 
 Unified Military Analytics is a data analytics and visualization project that analyzes military strength and economic indicators for countries around the world.
 
-The project collects military data, cleans and prepares the dataset, engineers key performance indicators (KPIs), and presents the results through interactive Tableau dashboards.
+The project collects military and economic data, cleans and prepares the datasets, engineers important Key Performance Indicators (KPIs), and presents the results through interactive Tableau dashboards.
 
 The final Tableau workbook contains four integrated dashboards:
 
@@ -15,326 +21,282 @@ The final Tableau workbook contains four integrated dashboards:
 
 ---
 
-## Project Objectives
+## 2. Data Collection and Scraping Method
 
-- Collect military and country-level data.
-- Clean and standardize the collected data.
-- Create meaningful military and economic KPIs.
-- Analyze military strength across countries.
-- Provide interactive filtering and country selection.
-- Compare the military capabilities of two countries.
-- Analyze selected groups of countries as a coalition.
-- Present insights through interactive Tableau dashboards.
+Military data was collected from publicly available web sources, including Global Firepower.
 
----
-
-## Data Collection / Scraping Method
-
-Military data was collected from publicly available Global Firepower information using Python-based web scraping.
+Python was used for data collection, cleaning, processing, and preparation.
 
 The scraping process used:
 
 - Python
-- Requests
+- Selenium
 - BeautifulSoup
 - Pandas
 
-The collected information includes military and economic indicators such as:
+Selenium was used where dynamic webpage content or browser interaction was required.
 
-- Power Index
-- Defense Budget
-- Active Military Personnel
-- Reserve Personnel
-- Military Aircraft
-- Tanks
-- Naval assets
-- Submarines
-- Purchasing Power
-- Population
-- GDP and other related indicators
+BeautifulSoup was used to parse HTML content and extract relevant information from webpages.
 
-The scraped data was initially stored as raw CSV data and subsequently cleaned and transformed for analysis.
+The collected data was stored in CSV format and then cleaned and processed using Pandas.
 
----
+### Data Preparation Process
 
-## Data Cleaning and Preparation
+The project followed these main steps:
 
-The raw dataset was cleaned and prepared using Python and Pandas.
-
-The cleaning process included:
-
-- Standardizing country names.
-- Cleaning numeric values.
-- Removing unnecessary characters from numeric fields.
-- Handling missing values.
-- Converting columns to appropriate data types.
-- Standardizing column names.
-- Preparing the dataset for KPI calculations and visualization.
-
-The cleaned dataset was then used to create the final analytical dataset.
+1. Collect military statistics from the source webpages.
+2. Extract country-level military metrics.
+3. Store the collected information in raw CSV files.
+4. Clean country names and numerical values.
+5. Handle missing and inconsistent values.
+6. Combine and integrate relevant datasets.
+7. Engineer calculated KPIs.
+8. Prepare the final dataset for Tableau.
+9. Build interactive dashboards using the final dataset.
 
 ---
 
-## KPI Definitions
+## 3. KPI Definitions
+
+The project uses several KPIs to evaluate military strength, manpower, economic capacity, and resource allocation.
 
 ### Power Index Score
 
-The Power Index Score represents the military strength of a country.
+A numerical indicator representing the overall military strength of a country.
 
-A lower Power Index Score indicates a stronger military position.
+A lower Power Index Score represents a stronger military position.
 
-### Power Rank
+### Power Index Rank
 
-Power Rank represents the country's ranking based on its Power Index Score.
+The ranking of countries according to their Power Index Score.
 
 ### Defense Budget
 
-The total amount allocated to defense and military expenditure.
+The estimated amount of money allocated by a country for defense and military expenditure.
 
-### Total Military Assets
+### Total Active Personnel
 
-Represents the combined military equipment and assets available to a country.
-
-### Active Military Personnel
-
-The number of active-duty military personnel.
+The number of active-duty military personnel serving in a country's armed forces.
 
 ### Reserve Personnel
 
-The number of military personnel available in reserve forces.
+The number of military personnel available as reserve forces.
 
-### Total Military Aircraft
+### Total Military Personnel
 
-The total number of military aircraft available.
+The combined military manpower consisting of active and reserve personnel.
 
-### Attack Aircraft
+### GDP
 
-The number of aircraft primarily intended for attack missions.
+Gross Domestic Product represents the total economic output of a country.
 
-### Fighter Aircraft
+### GDP per Capita
 
-The number of fighter aircraft available.
+GDP per Capita represents the approximate economic output per person and is calculated using GDP and population.
 
-### Submarines
+### Defense Budget as % of GDP
 
-The number of submarines operated by a country.
+The percentage of a country's GDP allocated to defense expenditure.
 
-### Purchasing Power
+### Military Assets
 
-Represents the purchasing power measure used in the dataset to support economic and military analysis.
+Military assets include resources such as aircraft, tanks, naval assets, and other military equipment used to evaluate military capability.
 
-### GDP Rank
+### Power Index Rank Gap
 
-The country's ranking based on its GDP.
+Power Index Rank Gap compares the military Power Index Rank with the country's economic/GDP-based ranking.
 
-### Power Rank Gap
-
-Power Rank Gap compares the military power ranking with the GDP ranking.
-
-It is calculated as:
-
-`Power Rank Gap = Power Rank - GDP Rank`
+This KPI helps identify differences between a country's military position and its economic position.
 
 ---
 
-# Tableau Dashboards
+## 4. Tableau Dashboard Usage Guide
 
-The final Tableau workbook contains four integrated dashboards.
+The final Tableau workbook contains four integrated dashboards:
 
-## 1. Quick Stats Dashboard
+1. Quick Stats Dashboard
+2. Nation Overview Dashboard
+3. Compare Powers Dashboard
+4. Coalition Builder Dashboard
 
-The Quick Stats Dashboard provides a high-level view of military strength across countries.
+### 4.1 Quick Stats Dashboard
 
-It includes:
+The Quick Stats Dashboard provides a high-level overview of military power across countries.
 
-- Total Defense Budget
-- Average Power Index
-- Total Active Personnel
-- Number of Countries Selected
-- World Map
-- Top 10 Countries by Power Index
+Users can:
+
+- View the top 10 countries by Power Index.
+- Filter by Region.
+- Filter by Continent.
+- Filter by Alliance.
+- View dynamic KPI cards.
+- View the world map.
+- Explore military power using interactive charts.
+
+The KPI cards dynamically update according to the selected filters.
+
+### 4.2 Nation Overview Dashboard
+
+The Nation Overview Dashboard provides a detailed profile of a selected country.
+
+Users can:
+
+- Select a country.
+- View major military metrics.
+- View economic indicators.
+- Examine military capability charts.
+- View ranks and comparisons through tooltips.
+- Analyze the selected country's overall military position.
+
+### 4.3 Compare Powers Dashboard
+
+The Compare Powers Dashboard provides a side-by-side comparison between any two selected countries.
+
+Users can select countries using Tableau parameters.
+
+The dashboard compares major metrics including:
+
+- Manpower
+- Aircraft
+- Naval strength
+- Defense budget
+- Power Index
+- Other major military KPIs
+
+This allows users to understand the relative strengths and weaknesses of two countries.
+
+### 4.4 Coalition Builder Dashboard
+
+The Coalition Builder Dashboard allows users to select multiple countries and analyze their combined military capabilities.
+
+Users can:
+
+- Select multiple countries.
+- View aggregated coalition metrics.
+- Compare coalition totals.
+- Compare the coalition against another country or reference value.
+- Analyze combined military strength.
+
+---
+
+## 5. Filters and Parameters
+
+The dashboards contain interactive filters and parameters.
 
 ### Filters
 
-The dashboard provides filters such as:
+The project uses filters such as:
 
 - Country
 - Region
 - Continent
 - Alliance
 
-These filters dynamically update the relevant dashboard visuals and KPI values.
+Changing a filter updates the relevant dashboard visualizations and KPI values.
+
+### Parameters
+
+Tableau parameters are used in the Compare Powers Dashboard to allow users to select two countries for side-by-side comparison.
 
 ---
 
-## 2. Nation Overview Dashboard
+## 6. Dashboard Navigation
 
-The Nation Overview Dashboard provides a detailed profile of a selected country.
+The four dashboards are integrated using navigation buttons.
 
-It includes:
+Users can move between:
 
-- Power Rank
-- Power Score
-- Defense Budget
-- GDP Rank
-- Power Rank Gap
-- Purchasing Power
-- Attack Aircraft
-- Fighter Aircraft
-- Military Power Map
-- Air Power Metrics
+**Quick Stats → Nation Overview → Compare Powers → Coalition Builder**
 
-### Country Selection
-
-Select a country using the country filter to display its corresponding military and economic profile.
-
-Tooltips provide additional information and comparisons where applicable.
+The navigation buttons allow users to move between dashboards without manually opening separate worksheets.
 
 ---
 
-## 3. Compare Powers Dashboard
+## 7. How to Open and Use the Tableau Dashboard
 
-The Compare Powers Dashboard provides a side-by-side comparison of any two selected countries.
+The final Tableau workbook is provided in `.twbx` format.
 
-The dashboard compares:
+### Steps to Open the Dashboard
 
-- Power Index Score
-- Defense Budget
-- Total Military Assets
-- Submarines
-- Total Military Aircraft
-- Available Manpower
+1. Download the final `.twbx` workbook from the GitHub repository.
+2. Open the workbook using Tableau Desktop or Tableau Public.
+3. Allow Tableau to load the packaged data source.
+4. Open the required dashboard.
+5. Use the available filters and parameters.
+6. Navigate between dashboards using the navigation buttons.
 
-The country selections allow users to analyze differences between two countries.
-
----
-
-## 4. Coalition Builder Dashboard
-
-The Coalition Builder Dashboard allows users to select multiple countries and analyze their combined military strength.
-
-It includes aggregated metrics such as:
-
-- Defense Budget
-- Total Military Assets
-- Total Military Aircraft
-- Total Submarines
-- Average Power Index Score
-
-The dashboard also provides a reference-country comparison and a coalition military-strength visualization.
+The `.twbx` format packages the Tableau workbook together with its required data, making it easier to share and open on another system.
 
 ---
 
-# How to Open the Tableau Dashboard
+## 8. Project Structure
 
-1. Download the final Tableau packaged workbook:
-
-   `global_military_firepower_2025.twbx`
-
-2. Open Tableau Desktop or Tableau Public.
-
-3. Open the `.twbx` workbook.
-
-4. Allow Tableau to load the packaged data sources.
-
-5. Navigate between the four dashboards using the navigation buttons.
-
----
-
-# How to Use the Dashboards
-
-### Quick Stats
-
-1. Select a Region, Continent, Alliance, or Country.
-2. Observe the KPI cards.
-3. Analyze the world map.
-4. Examine the Top 10 Countries by Power Index chart.
-
-### Nation Overview
-
-1. Select a country.
-2. Review its military profile.
-3. Examine the KPI cards.
-4. Use the charts and map for detailed analysis.
-5. Hover over visual elements to view tooltips.
-
-### Compare Powers
-
-1. Select Country 1.
-2. Select Country 2.
-3. Compare the displayed military and economic metrics.
-4. Use the charts to identify differences between the countries.
-
-### Coalition Builder
-
-1. Select multiple countries.
-2. Review the aggregated coalition metrics.
-3. Compare the coalition against the reference country.
-4. Analyze the coalition military-strength chart.
-
----
-
-# Dashboard Navigation
-
-Navigation buttons are provided across the dashboards to allow seamless movement between:
-
-- Quick Stats
-- Nation Overview
-- Compare Powers
-- Coalition Builder
-
-This allows users to move between high-level analysis, individual country analysis, country comparison, and coalition analysis.
-
----
-
-# Testing and Validation
-
-The dashboards were tested during the final testing phase.
-
-The following were verified:
-
-- Country filters work correctly.
-- Region filters work correctly.
-- Continent filters work correctly.
-- Alliance filters work correctly.
-- Country selection updates the Nation Overview.
-- Country comparison works correctly.
-- Coalition selection works correctly.
-- Dashboard navigation works correctly.
-- KPI values were manually checked.
-- Active personnel values were corrected and verified.
-- Charts and tooltips were checked.
-- Dashboard layouts were reviewed.
-- The final Tableau workbook was tested in Tableau.
-
----
-
-# Technologies Used
-
-- Python
-- Pandas
-- BeautifulSoup
-- Requests
-- Tableau
-- Microsoft Excel
-- Git
-- GitHub
-
----
-
-# Project Structure
+The repository is organized module-wise to correspond with the project development stages and deliverables.
 
 ```text
 Unified-Military-Analytics/
 │
 ├── Module 1/
-├── Module 2/
-├── Module 3/
-├── Module 4/
-├── Module 5/
-├── Module 6/
-├── Module 7/
-├── Module 8/
-│   └── README.md
+│   └── Data Collection and Scraping
 │
-└── README.md
+├── Module 2/
+│   └── Data Cleaning and Preprocessing
+│
+├── Module 3/
+│   └── Data Integration and KPI Engineering
+│
+├── Module 4/
+│   └── Dashboard Storyboard and Initial Dashboard
+│
+├── Module 5/
+│   └── Quick Stats and Nation Overview
+│
+├── Module 6/
+│   └── Compare Powers and Coalition Builder
+│
+├── Module 7/
+│   └── Testing, Debugging and Quality Assurance
+│
+└── Module 8/
+    └── Documentation and GitHub Release
+
+```
+
+---
+
+## 9. Final Release and Sharing
+
+The final version of the Unified Military Analytics project is organized and maintained in the GitHub repository.
+
+The repository contains:
+
+- Module-wise project files from Module 1 to Module 8
+- Data collection and scraping scripts
+- Cleaned and integrated datasets
+- KPI engineering scripts and outputs
+- Tableau dashboard files and supporting resources
+- Dashboard screenshots and documentation
+- Module-wise README files
+
+The repository is structured to make the project easy to understand, review, reproduce, and share.
+
+### Final Deliverables
+
+The completed project includes:
+
+- Organized GitHub repository
+- Final datasets
+- KPI calculations
+- Interactive Tableau dashboards
+- Dashboard documentation and usage guide
+- Project storyboard and supporting documentation
+
+The Tableau dashboard can also be shared through the provided Tableau Public link when available.
+
+---
+
+## Conclusion
+
+Unified Military Analytics brings together military, economic, and demographic indicators into an interactive analytics solution.
+
+The project demonstrates the complete data analytics workflow, from data collection and cleaning to KPI engineering, visualization, testing, documentation, and final GitHub release.
