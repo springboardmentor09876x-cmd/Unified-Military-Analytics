@@ -380,5 +380,3 @@ The final workbook is intended to be a clean, interactive, and shareable militar
 **Project: Unified Military Analytics and Comparison Dashboard**
 
 
-
-
