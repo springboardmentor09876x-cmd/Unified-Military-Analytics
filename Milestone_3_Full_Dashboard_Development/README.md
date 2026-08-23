@@ -17,6 +17,7 @@ Together, these four dashboards let users explore country-level military capabil
 🔗 **Streamlit Dashboard (Live Demo):** [Open Dashboard](https://unified-military-analytics-d9psbq9jmnxwj7qknig9gf.streamlit.app/)
 
 > Click the link above to explore the live Quick Stats, Nation Overview, Compare Powers, and Coalition Builder dashboards directly in your browser — no setup required.
+> > ⚠️ **Note:** This app is hosted on Streamlit Community Cloud's free tier, which puts apps to sleep after a period of inactivity. If you see a **"This app has gone to sleep due to inactivity"** screen when you open the link, simply click the **"Yes, get this app back up!"** button — the app will restart in under a minute. This is normal free-tier behaviour, not a bug.
 
 ---
 
